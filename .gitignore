@@ -1,4 +1,3 @@
-.gitignore
 mysql.log
 test/mysql.log
 db_credentials.php
