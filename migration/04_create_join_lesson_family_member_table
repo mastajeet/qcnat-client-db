@@ -1,0 +1,1 @@
+CREATE TABLE `join_family_member_lesson` ( `join_family_member_lesson_id` INT NOT NULL , `family_member_id` INT NOT NULL , `lesson_id` INT NOT NULL ) ENGINE = MyISAM;

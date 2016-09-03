@@ -1,0 +1,8 @@
+CREATE TABLE `lesson` (
+  `lesson_id` bigint(20) NOT NULL,
+  `session` varchar(255) NOT NULL,
+  `pool` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `level` varchar(255) NOT NULL,
+  `instructor` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

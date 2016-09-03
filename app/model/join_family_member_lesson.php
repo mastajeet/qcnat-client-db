@@ -7,24 +7,25 @@
  * Time: 12:07 PM
  */
 include_once('base_model.php');
-class TakenLesson extends BaseModel
+class JoinFamilyMemberLesson extends BaseModel
 {
+    public $join_family_member_lesson_id;
     public $family_member_id;
     public $lesson_id;
 
     static function define_data_types()
     {
         return array(
-            'join_lesson_family_member_id' => 'ID',
-            'lesson_id' => 'ID',
-            'family_member_id' => 'ID'
+            'join_family_member_lesson_id' => 'ID',
+            'lesson_id' => 'int',
+            'family_member_id' => 'int'
         );
     }
 
     static function define_table_info(){
         return array(
-            'model_table' =>"join_lesson_family_member",
-            'model_table_id'=> "join_lesson_family_member_id");
+            'model_table' =>"join_family_member_lesson",
+            'model_table_id'=> "join_family_member_lesson_id");
     }
 
     static function join($family_member, $lesson)
