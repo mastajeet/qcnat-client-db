@@ -4,16 +4,24 @@ class NotImplementedException extends BadMethodCallException
 {
 }
 
-class base_model
+class BaseModel
 {
     public $updated_values = array();
 
-    function select_all_query()
+    static function find_by_id()
     {
         $object = get_called_class();
         $table_info = $object::define_table_info();
 
         return ("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $table_info['model_table_id'] . " = ");
+    }
+
+    static function get_all(){
+        $object = get_called_class();
+        $table_info = $object::define_table_info();
+        $request =  "SELECT ".$table_info['model_table_id']." FROM ". $table_info['model_table'] . " WHERE 1";
+        $result = BaseModel::find($request,$object);
+        return $result;
     }
 
 
@@ -22,7 +30,7 @@ class base_model
         $table_info = $object::define_table_info();
         $model_table_id = $table_info['model_table_id'];
         $request =  "SELECT ".$table_info['model_table_id']." FROM ". $table_info['model_table'] . " WHERE 1 ORDER BY ". $table_info['model_table_id'] . " DESC LIMIT 0,1";
-        $result = base_model::select($request);
+        $result = BaseModel::select($request);
         return $result[0][$model_table_id];
     }
 
@@ -32,7 +40,7 @@ class base_model
         $table_info = $object::define_table_info();
         $model_table_id = $table_info['model_table_id'];
         $request =  "SELECT * FROM ". $table_info['model_table'] . " WHERE 1 ORDER BY ". $table_info['model_table_id'] . " DESC LIMIT 0,1";
-        $result = base_model::select($request);
+        $result = BaseModel::select($request);
         return new $object($result[0][$model_table_id]);
     }
 
@@ -41,16 +49,26 @@ class base_model
         return array();
     }
 
+    static function define_default_values()
+    {
+        return array();
+    }
+
+
     static function define_table_info()
     {
         throw new NotImplementedException();
     }
 
 
-    function __construct($Arg)
+    function __construct($Arg=null)
     {
         if (is_null($Arg)) {
-            return FALSE;
+            $object = get_called_class();
+            foreach($object::define_default_values() as $key => $value){
+                $this->$key = $value;
+                $this->updated_values[] = $key;
+            }
         }
 
         if (is_array($Arg)) {
@@ -64,7 +82,7 @@ class base_model
         if (is_numeric($Arg)) {
             //Assuming ID, search for ID
             $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
-            $SQL->SELECT($this->select_all_query() . $Arg);
+            $SQL->SELECT($this->find_by_id() . $Arg);
 
             $Req = $SQL->FetchAssoc();
 
@@ -175,23 +193,22 @@ class base_model
 
         if ($this->$model_table_id == 0) {
             if (count($this->updated_values) > 0) {
-                base_model::insert($this->generate_insert_statement());
+                BaseModel::insert($this->generate_insert_statement());
                 $this->$model_table_id = $object::get_last_id();
+
             }
         } else {
             if (count($this->updated_values) > 0) {
-                base_model::update($this->generate_update_statement());
-                return true;
+                BaseModel::update($this->generate_update_statement());
             }
         }
-//        est-ce qu'on remonte une exception quand le update / insert n'a pas fonctionne? comment on le detecte?
-        return false;
+        return $this->$model_table_id;
+
     }
 
     static function insert($Req)
     {
         $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
-        print($Req);
         $SQL->Insert($Req);
         $SQL->CloseConnection();
     }
@@ -203,11 +220,25 @@ class base_model
         $SQL->CloseConnection();
     }
 
+
+    static function find($Req,$class){
+        $table_info = $class::define_table_info();
+        $model_table_id = $table_info['model_table_id'];
+
+        $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
+        $SQL->Select($Req);
+        $return_value = array();
+        while($rep = $SQL->FetchAssoc()){
+            $return_value[] = new $class($rep[$model_table_id ]);
+        }
+        $SQL->CloseConnection();
+        return $return_value;
+    }
+
     static function select($Req)
     {
         $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
         $SQL->Select($Req);
-        print($Req);
         $return_value = array();
         while($rep = $SQL->FetchAssoc()){
             $return_value[] = $rep;
@@ -266,7 +297,7 @@ class base_model
         if (array_key_exists($field, $data_types)) {
             return $data_types[$field];
         } else {
-            return base_model::guess_data_type($value);
+            return BaseModel::guess_data_type($value);
         }
     }
 

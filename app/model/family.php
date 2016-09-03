@@ -1,12 +1,12 @@
 <?php
-include_once('base_model.php');
+include_once('/base_model.php');
 /**
  * Created by PhpStorm.
  * User: jtbai
  * Date: 2016-08-16
  * Time: 9:12 PM
  */
-class family extends base_model
+class Family extends BaseModel
 {
 
     #### Family Info ####
@@ -19,7 +19,7 @@ class family extends base_model
     public $email;
     public $created_at;
     public $deleted_at;
-    protected $family_members = [];
+    protected $family_members = null;
 
     static function define_data_types()
     {
@@ -44,9 +44,12 @@ class family extends base_model
 
     function get_family_members(){
         $req = "SELECT family_member_id FROM family_member WHERE family_id = ".$this->family_id;
-        $result = self::select($req);
-        foreach($result as $v){
-            $this->family_members[] = new family_member($v['family_member_id']);
+        $result = self::find($req,get_class(new FamilyMember));
+        if($result==[])
+            $this->family_members = [];
+
+        foreach($result as $family_member){
+            $this->family_members[] = $family_member;
         }
     }
 

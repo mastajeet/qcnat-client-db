@@ -197,14 +197,14 @@ class HTMLHelper
 		$this->closecol();
 		$this->opencol();
 		$this->addtexte("(");
-		$this->addoutput("<input type=text name=\"".$this->formname."_PHONE_".$name."1\" size=3 value=\"".substr($value,0,3)."\" class=inputtext>");
+		$this->addoutput("<input type=text name=\"".$this->formname."PHONE_".$name."1\" size=3 value=\"".substr($value,0,3)."\" class=inputtext>");
 		$this->addtexte(")&nbsp;");
-		$this->addoutput("<input type=text name=\"".$this->formname."_PHONE_".$name."2\" size=3 value=\"".substr($value,3,3)."\" class=inputtext>");
+		$this->addoutput("<input type=text name=\"".$this->formname."PHONE_".$name."2\" size=3 value=\"".substr($value,3,3)."\" class=inputtext>");
 		$this->addtexte("-");
-		$this->addoutput("<input type=text name=\"".$this->formname."_PHONE_".$name."3\" size=4 value=\"".substr($value,6,4)."\" class=inputtext>");
+		$this->addoutput("<input type=text name=\"".$this->formname."PHONE_".$name."3\" size=4 value=\"".substr($value,6,4)."\" class=inputtext>");
 		if($EXT){
 			$this->addtexte(" #");
-			$this->addoutput("<input type=text name=\"".$this->formname."_PHONE_".$name."4\" size=4 value=\"".substr($value,10,5)."\" class=inputtext>");
+			$this->addoutput("<input type=text name=\"".$this->formname."PHONE_".$name."4\" size=4 value=\"".substr($value,10,5)."\" class=inputtext>");
 		}
 
 		$this->closecol();
@@ -246,9 +246,9 @@ class HTMLHelper
 		$this->opencol();
 
 		if($val['Date']){
-			$this->addoutput("<input type=text name=\"".$this->formname."_DATE_".$name."5\" size=2 maxlength=2 value=\"".$Jour."\" class=inputtext>");
+			$this->addoutput("<input type=text name=\"".$this->formname."DATE_".$name."5\" size=2 maxlength=2 value=\"".$Jour."\" class=inputtext>");
 			$this->addtexte("&nbsp;");
-			$this->addoutput("<select name=\"".$this->formname.$name."_DATE_"."4\" class=inputselect>");
+			$this->addoutput("<select name=\"".$this->formname.$name."DATE_"."4\" class=inputselect>");
 			$this->addoutput("<option value=' '> </option>");
 			$month = get_month_list();
 			foreach($month as $v => $o){
@@ -261,13 +261,13 @@ class HTMLHelper
 			}
 			$this->addoutput("</select>");
 			$this->addtexte("&nbsp;");
-			$this->addoutput("<input type=text name=\"".$this->formname."_DATE_".$name."3\" maxlength=4 size=4 value=\"".$Year."\" class=inputtext>");
+			$this->addoutput("<input type=text name=\"".$this->formname."DATE_".$name."3\" maxlength=4 size=4 value=\"".$Year."\" class=inputtext>");
 			$this->addtexte("&nbsp;");
 		}
 		if($val['Time']){
-		$this->addoutput("<input type=text name=\"".$this->formname."_DATE_".$name."2\" size=1 maxlength=2 value=\"".$Heure."\" class=inputtext>");
+		$this->addoutput("<input type=text name=\"".$this->formname."DATE_".$name."2\" size=1 maxlength=2 value=\"".$Heure."\" class=inputtext>");
 		$this->addtexte(":");
-		$this->addoutput("<input type=text name=\"".$this->formname."_DATE_".$name."1\" size=1  maxlength=2 value=\"".$Min."\" class=inputtext>");
+		$this->addoutput("<input type=text name=\"".$this->formname."DATE_".$name."1\" size=1  maxlength=2 value=\"".$Min."\" class=inputtext>");
 }
 
 		$this->closecol();

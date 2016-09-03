@@ -13,10 +13,12 @@ const TELEPHONE = 'téléphone';
 const EMAIL = 'email';
 const ADDRESS = 'adresse';
 const FIRSTNAME = 'prénom';
-const LASTACTIVESESSION = 'derniere session active';
+const LASTCOURSE = 'dernier cours';
 const ROLE = 'role';
+const DATE_OF_BIRTH = "date de naissance";
 const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
 const ADD_MODIFY = "Ajouter / Modifier";
 
 ########## messages
 const WARNING_UNKNOWN_MODEL_VALUE = 'Warning - unknown model value';
+const NO_ROUTE = 'No route for';
