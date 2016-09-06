@@ -10,7 +10,8 @@
 require_once ('../app/model/family.php');
 require_once ('../app/model/family_member.php');
 require_once ('../app/model/lesson.php');
-
+require_once ('../app/helper/basic_enum.php');
+require_once ('../enums.php');
 
 class TestData
 {

@@ -11,7 +11,8 @@
 include_once ('app/helper/MySQLHelper.php');
 include_once ('app/helper/HTMLHelper.php');
 include_once ('app/helper/post_request_preparer.php');
-
+require_once ('app/helper/basic_enum.php');
+require_once ('enums.php');
 
 ### APP MVC ###
 include_once('app/model/family.php');
