@@ -39,12 +39,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         switch($_POST['ressource']) {
 
             CASE 'family': {
-                $controller = new family_controller();
+                $controller = new FamilyController();
                 break;
             }
 
             CASE 'family_member': {
-                $controller = new family_member_controller();
+                $controller = new FamilyMemberController();
                 break;
             }
         }
@@ -62,23 +62,24 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
       switch($_GET['ressource']) {
 
           CASE 'family': {
-              $controller = new family_controller();
+              $controller = new FamilyController();
               break;
           }
 
           CASE 'family_member': {
-              $controller = new family_member_controller();
+              $controller = new FamilyMemberController();
               break;
           }
       }
 
       if(isset($controller)){
-          $filter = null;
+          $filter = array();
+          $args = $_GET;
           if(!isset($_GET['ID'])){
               if(!isset($_GET['add']))
                 $controller->get_list($filter);
               else{
-                  $controller->create_one($filter);
+                  $controller->create_one($args);
               }
           }else{
               if(isset($_GET['edit'])){

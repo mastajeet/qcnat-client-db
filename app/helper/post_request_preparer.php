@@ -11,7 +11,6 @@ function prepare_post_request_data($post_data,$form_name="FORM"){
     $len_form_name = strlen($form_name);
     $date_to_convert = array();
     $phone_to_convert = array();
-
     foreach($post_data as $key=>$value){
 
 
@@ -19,9 +18,9 @@ function prepare_post_request_data($post_data,$form_name="FORM"){
 
 
             if(substr($key,0,$len_form_name+1+4)==$form_name."_DATE"){
-                throw new NotImplementedException();
                 $field_name = substr($key,$len_form_name+1+5,strlen($key)-$len_form_name-7);
-                if(!array_key_exist($field_name,$date_to_convert)){
+
+                if(!array_key_exists($field_name,$date_to_convert)){
                     $date_to_convert[$field_name] = array();
                 }
 
@@ -52,7 +51,8 @@ function prepare_post_request_data($post_data,$form_name="FORM"){
 
 
 function convert_date_from_post_data($date_post_data_array){
-    return mktime(0,0,0,$date_post_data_array[4],$date_post_data_array[5],$date_post_data_array[3]);
+    $time = mktime(0,0,0,$date_post_data_array[4],$date_post_data_array[5],$date_post_data_array[3]);
+    return date('Y-m-d H:i:s',$time );
 }
 
 function convert_phone_from_post_data($phone_post_data_array){

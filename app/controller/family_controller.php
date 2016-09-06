@@ -6,14 +6,14 @@
  * Time: 9:36 PM
  */
 include_once("base_controler.php");
-class family_controller extends base_controler{
+class FamilyController extends base_controler{
 
     function get_list($filters){
         $families = Family::get_all();
         include("app/view/family/display_families.php");
     }
 
-    function create_one()
+    function create_one($args)
     {
         $family = new Family();
         include("app/view/family/add_modify_family.php");

@@ -212,10 +212,15 @@ class HTMLHelper
 	}
 	
 	function inputtime($name, $description=NULL, $value=0, $val=array('Date'=>False,'Time'=>True)){
-	if($value=="")
-                   $value=0;	
-            $GETDATE = getdate($value);
-                
+	    if($value=="")
+            $value=0;
+
+        if(is_string($value)){
+            $value = strtotime($value);
+        }
+
+        $GETDATE = getdate($value);
+
 		if($value==0){
 			$Heure = "0";
 			$Min = "0";
@@ -248,16 +253,17 @@ class HTMLHelper
 		if($val['Date']){
 			$this->addoutput("<input type=text name=\"".$this->formname."DATE_".$name."5\" size=2 maxlength=2 value=\"".$Jour."\" class=inputtext>");
 			$this->addtexte("&nbsp;");
-			$this->addoutput("<select name=\"".$this->formname.$name."DATE_"."4\" class=inputselect>");
+			$this->addoutput("<select name=\"".$this->formname."DATE_".$name."4\" class=inputselect>");
 			$this->addoutput("<option value=' '> </option>");
-			$month = get_month_list();
+			$month = Month::get_constants();
 			foreach($month as $v => $o){
-				$text = "";
+		        $text = "";
 
-				if($v==$Mois){
+				if($o==$Mois){
 					$text = "SELECTED ";
 				}
-				$this->addoutput("<option value='".$v."' ".$text.">".$o."</option>");
+				$this->addoutput("<option value='".$o."' ".$text.">".$v."</option>");
+
 			}
 			$this->addoutput("</select>");
 			$this->addtexte("&nbsp;");
@@ -316,7 +322,7 @@ class HTMLHelper
 						$this->closecol();
 					}
 				}else{
-				foreach($value as $val => $desc){
+				foreach($value as $desc=> $val ){
 					$text="";
 					if($val==$selected)
 						$text = "CHECKED";

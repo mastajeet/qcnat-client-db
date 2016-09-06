@@ -7,15 +7,7 @@
  * Time: 9:17 PM
  */
 
-class Sex {
-    const MEN = 1;
-    const WOMEN = 2;
-}
 
-class Role{
-    const PARENT = 1;
-    const CHILD = 2;
-}
 include_once('base_model.php');
 
 class FamilyMember extends BaseModel
@@ -26,7 +18,7 @@ class FamilyMember extends BaseModel
     public $date_of_birth;
     public $sex;
     public $role;
-    protected $family_id;
+    public $family_id;
     protected $age;
     protected $last_course = null;
     protected $previous_courses = null;

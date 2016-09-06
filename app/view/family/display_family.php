@@ -59,66 +59,7 @@ $output->closecol();
 $output->closerow();
 $output->closetable();
 
-$output->addpic('ressource/icon/add_ressource.png',null,get_route('add_family_member'));
-
-$output->opentable(600);
-
-$output->openrow();
-
-$output->opencol();
-    $output->addtexte(" ",'Titre');
-$output->closecol();
-
-$output->opencol();
-    $output->addtexte(ucfirst(FIRSTNAME),'Titre');
-$output->closecol();
-
-$output->opencol();
-    $output->addtexte(ucfirst(ROLE),'Titre');
-$output->closecol();
-
-$output->opencol();
-    $output->addtexte(ucfirst(DATE_OF_BIRTH),'Titre');
-$output->closecol();
-
-$output->opencol();
-    $output->addtexte(ucfirst(LASTCOURSE),'Titre');
-$output->closecol();
-
-$output->closerow();
-
-foreach($family->family_members as $member){
-
-
-    $output->openrow();
-
-
-    $output->opencol(25);
-    $output->addpic('ressource/icon/edit_ressource.png',get_route("edit_family_member",$member->family_member_id));
-    $output->closecol();
-
-
-    $output->opencol(100);
-        $output->addtexte($member->name);
-    $output->closecol();
-
-    $output->opencol(100);
-    $output->addtexte($member->role);
-    $output->closecol();
-
-    $output->opencol(100);
-    $output->addtexte($member->date_of_birth);
-    $output->closecol();
-
-    $output->opencol(100);
-    $output->addtexte($member->last_course);
-    $output->closecol();
-
-
-
-    $output->closerow();
-}
-
+include('app/view/family_member/display_family_member_from_one_family.php');
 
 echo $output->send(1);
 

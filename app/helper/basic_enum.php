@@ -21,6 +21,16 @@ abstract class BasicEnum {
         return self::$constCacheArray[$calledClass];
     }
 
+    public static function get_value($name){
+        $constants = array_flip(self::get_constants());
+
+
+            if(array_key_exists($name, $constants)){
+
+                return $constants[$name] ;
+            }
+    }
+
 
     public static function is_valid_name($name, $strict = false) {
         $constants = self::get_constants();

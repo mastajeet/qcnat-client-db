@@ -22,7 +22,7 @@ class base_controler
         throw new NotImplementedException("No Model is specified");
     }
 
-    function create_one(){
+    function create_one($args){
         throw new NotImplementedException("No Model is specified");
     }
 
