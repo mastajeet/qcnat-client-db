@@ -1,8 +1,13 @@
-CREATE TABLE `lesson` (
-  `lesson_id` bigint(20) NOT NULL,
+--
+-- Structure de la table `lesson`
+--
+
+CREATE TABLE IF NOT EXISTS `lesson` (
+  `lesson_id` int(11) NOT NULL AUTO_INCREMENT,
   `session` varchar(255) NOT NULL,
   `pool` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL,
   `level` varchar(255) NOT NULL,
-  `instructor` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `instructor` varchar(255) NOT NULL,
+  PRIMARY KEY (`lesson_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

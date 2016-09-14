@@ -1,1 +1,10 @@
-CREATE TABLE `join_family_member_lesson` ( `join_family_member_lesson_id` INT NOT NULL , `family_member_id` INT NOT NULL , `lesson_id` INT NOT NULL ) ENGINE = MyISAM;
+--
+-- Structure de la table `join_family_member_lesson`
+--
+
+CREATE TABLE IF NOT EXISTS `join_family_member_lesson` (
+  `join_family_member_lesson_id` int(11) NOT NULL AUTO_INCREMENT,
+  `family_member_id` int(11) NOT NULL,
+  `lesson_id` int(11) NOT NULL,
+  PRIMARY KEY (`join_family_member_lesson_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
