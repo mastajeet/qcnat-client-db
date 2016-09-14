@@ -21,3 +21,9 @@ include_once('app/controller/family_controller.php');
 include_once('app/model/family_member.php');
 include_once ('app/controller/family_member_controller.php');
 
+include_once('app/model/lesson.php');
+include_once ('app/controller/lesson_controller.php');
+
+include_once('app/model/join_family_member_lesson.php');
+include_once ('app/controller/join_family_member_lesson_controller.php');
+

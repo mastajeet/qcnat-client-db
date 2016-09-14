@@ -27,7 +27,8 @@ class TestLessonModel extends PHPUnit_Framework_TestCase
         $this->assertEquals($my_lesson->session,'Hiver 2016');
         $this->assertEquals($my_lesson->pool,'Limoilou');
         $this->assertEquals($my_lesson->instructor,'Richard Bernier');
-        $this->assertEquals($my_lesson->time,'Mardi 19h30');
+        $this->assertEquals($my_lesson->day,'Mardi');
+        $this->assertEquals($my_lesson->time,'19h30');
     }
 
     function test_adding_new_family_in_db(){
@@ -40,7 +41,8 @@ class TestLessonModel extends PHPUnit_Framework_TestCase
         $this->assertEquals($my_retrieved_lesson->session,'Hiver 2016');
         $this->assertEquals($my_retrieved_lesson->pool,'Limoilou');
         $this->assertEquals($my_retrieved_lesson->instructor,'Richard Bernier');
-        $this->assertEquals($my_retrieved_lesson->time,'Mardi 19h30');
+        $this->assertEquals($my_retrieved_lesson->day,'Mardi');
+        $this->assertEquals($my_retrieved_lesson->time,'19h30');
 
     }
 

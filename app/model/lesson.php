@@ -13,6 +13,7 @@ class Lesson extends BaseModel{
 
     public $lesson_id;
     public $pool;
+    public $day;
     public $time;
     public $level;
     public $session;
@@ -26,7 +27,8 @@ class Lesson extends BaseModel{
             'pool'=>'string',
             'session' => 'string',
             'instructor' => 'string',
-            'time' => 'string'
+            'day' => 'string',
+            'time' => 'string',
         );
     }
 
@@ -34,5 +36,19 @@ class Lesson extends BaseModel{
         return array(
             'model_table' =>"lesson",
             'model_table_id'=> "lesson_id");
+    }
+
+    static function is_lesson_in_db($session, $pool, $day, $time, $level){
+        $req = "SELECT * FROM lesson WHERE session='".$session."' and pool='".$pool."' and day='".$day."' and time='".$time."' and level='".$level."'";
+        $table_info = self::define_table_info();
+        $rep = self::select($req);
+        if(!$rep){
+            return false;
+        }
+        return($rep[0][$table_info['model_table_id']]);
+    }
+
+    public function to_string(){
+        return $this->session." - ".$this->pool." - ".$this->level."  ".$this->day." ".$this->time." (".$this->instructor.")";
     }
 }

@@ -36,7 +36,7 @@ class TestJoinFamilyMemberLesson extends PHPUnit_Framework_TestCase
 
 
 
-    function test_adding_new_family_in_(){
+    function test_adding_new_family_in_db(){
 
 
         $to_join = TestData::generate_join_family_member_lesson();

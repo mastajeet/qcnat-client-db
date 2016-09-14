@@ -16,10 +16,34 @@ class BaseModel
         return ("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $table_info['model_table_id'] . " = ");
     }
 
-    static function get_all(){
+    static function get_all($filter=1){
         $object = get_called_class();
         $table_info = $object::define_table_info();
-        $request =  "SELECT ".$table_info['model_table_id']." FROM ". $table_info['model_table'] . " WHERE 1";
+        $request =  "SELECT ".$table_info['model_table_id']." FROM ". $table_info['model_table'] . " WHERE ".$filter;
+        $result = BaseModel::find($request,$object);
+        return $result;
+    }
+
+    static function get_all_in_list($filter){
+        $object = get_called_class();
+        $table_info = $object::define_table_info();
+        $request =  "SELECT * FROM ". $table_info['model_table'] . " WHERE ".$filter;
+        $result_array = self::select($request);
+        $result_set = array();
+        foreach($result_array as $k => $v){
+            $value = "";
+            foreach($v as $field=>$field_value){
+                if($field!=$table_info['model_table_id']){
+                    $value .= " ".$field_value;
+                }else{
+                    $object_id  = $field_value;
+
+                }
+            }
+            $result_set[$object_id] = $value;
+        }
+        return $result_set;
+
         $result = BaseModel::find($request,$object);
         return $result;
     }
@@ -117,7 +141,10 @@ class BaseModel
         $value_list = $object::define_data_types();
         if(in_array($name,array_keys($value_list))){
             return $this->$name;
+        }elseif(in_array($name,get_class_methods($object))) {
+            $this->$name();
         }else{
+
             throw new Error(WARNING_UNKNOWN_MODEL_VALUE.": ".$name." for ".$object);
         }
 
@@ -240,6 +267,9 @@ class BaseModel
         $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
         $SQL->Select($Req);
         $return_value = array();
+        if($SQL->NumRow()==0){
+            return false;
+        }
         while($rep = $SQL->FetchAssoc()){
             $return_value[] = $rep;
         }

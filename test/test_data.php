@@ -23,7 +23,8 @@ class TestData
             'session'=>'Hiver 2016',
             'pool'=>'Limoilou',
             'instructor'=>'Richard Bernier',
-            'time'=>'Mardi 19h30'
+            'time'=>'19h30',
+            'day'=>'Mardi'
         ) ;
 
         return $lesson;

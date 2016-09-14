@@ -20,8 +20,8 @@ class FamilyMember extends BaseModel
     public $role;
     public $family_id;
     protected $age;
-    protected $last_course = null;
-    protected $previous_courses = null;
+    protected $last_lesson = null;
+    protected $previous_lessons = null;
 
 
     static function define_data_types()
@@ -29,8 +29,8 @@ class FamilyMember extends BaseModel
         return array(
             'family_member_id' => 'ID',
             'family_id=>'=>'ID',
-            'previous_courses'=>'has_many',
-            'last_course'=>'has_one',
+            'previous_lessons'=>'has_many',
+            'last_lesson'=>'has_one',
             'name'=>'string',
             'date_of_birth'=>'date',
             'sex'=>'int',
@@ -49,16 +49,32 @@ class FamilyMember extends BaseModel
         #find a age function somewhere on the internet....
     }
 
-    public function get_previous_courses(){
+    public function get_previous_lessons(){
         # sessions need to be sorted by timestamp....
+        $join_info = JoinFamilyMemberLesson::define_table_info();
+        $lesson_info = Lesson::define_table_info();
+        $family_member_info = self::define_table_info();
+        $req = "SELECT ".$lesson_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$family_member_info['model_table_id']." = ".$this->family_member_id;
+        $rep = self::select($req);
+        $previous_lesson = array();
+        if($rep){
+            foreach($rep as $values){
 
+                $previous_lesson[] = new Lesson(($values[$lesson_info['model_table_id']]));
+            }
+        }
+        $this->previous_lessons = $previous_lesson;
     }
 
-    public function get_last_course(){
-        if(is_null($this->previous_courses)){
-            $this->get_previous_courses();
+    public function get_last_lesson(){
+        if(is_null($this->previous_lessons)){
+            $this->get_previous_lessons();
         }
-        return $this->previous_courses[len($this->previous_courses-1)];
+
+        if(count($this->previous_lessons)>0){
+
+            $this->last_lesson = $this->previous_lessons[count($this->previous_lessons)-1]->to_string();
+        }
     }
 
 }

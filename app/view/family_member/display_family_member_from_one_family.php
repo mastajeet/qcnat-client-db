@@ -8,7 +8,7 @@
 
 $output->addpic('ressource/icon/add_ressource.png',null,get_route('add_family_member').'&family_id='.$family->family_id);
 
-$output->opentable(600);
+$output->opentable(1150);
 
 $output->openrow();
 
@@ -66,8 +66,9 @@ foreach($family->family_members as $member){
     $output->addtexte($member->date_of_birth);
     $output->closecol();
 
-    $output->opencol(100);
-    $output->addtexte($member->last_course);
+    $output->opencol(600);
+    $member->get_last_lesson();
+    $output->addtexte($member->last_lesson);
     $output->closecol();
 
 
