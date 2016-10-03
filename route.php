@@ -5,33 +5,8 @@
  * Date: 2016-08-16
  * Time: 9:26 PM
  */
+//print_r($_REQUEST);
 
-function get_route($name,$args=null){
-
-    switch ($name){
-
-        CASE "add_family":
-            return 'index.php?ressource=family&add=true';
-
-        CASE "edit_family":
-            return 'index.php?ressource=family&ID='.$args.'&edit=true';
-
-        CASE "display_family":
-            return 'index.php?ressource=family&ID='.$args;
-
-        CASE "edit_family_member":
-            return 'index.php?ressource=family_member&ID='.$args.'&edit=true';
-
-        CASE "delete_family_member":
-            return 'index.php?ressource=family_member&ID='.$args.'&delete=true';
-
-        CASE "add_family_member":
-            return 'index.php?ressource=family_member&add=true';
-
-
-    }
-    throw new UnexpectedValueException(NO_ROUTE.": ".$name);
-}
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
@@ -47,6 +22,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 $controller = new FamilyMemberController();
                 break;
             }
+
+            CASE 'join_family_member_lesson': {
+                $controller = new JoinFamilyMemberLessonController();
+                break;
+            }
+
         }
 
         if(isset($controller)){
@@ -70,29 +51,46 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
               $controller = new FamilyMemberController();
               break;
           }
+
+          CASE 'lesson': {
+              $controller = new LessonController();
+              break;
+          }
+
+          CASE 'join_family_member_lesson': {
+              $controller = new JoinFamilyMemberLesson();
+              break;
+          }
       }
 
       if(isset($controller)){
           $filter = array();
           $args = $_GET;
-          if(!isset($_GET['ID'])){
-              if(!isset($_GET['add']))
-                $controller->get_list($filter);
-              else{
-                  $controller->create_one($args);
-              }
+          if(isset($_GET['action'])){
+              $function_name = $_GET['action'];
+              $controller->$function_name();
           }else{
-              if(isset($_GET['edit'])){
-                  $controller->edit_one($_GET['ID']);
-              }elseif(isset($_GET['delete'])) {
-                  $controller->delete_one($_GET['ID']);
-              }else{
-                  $controller->get_one($_GET['ID']);
-              }
 
+              if (!isset($_GET['ID'])) {
+                  if (!isset($_GET['add']))
+                      $controller->get_list($filter);
+                  else {
+                      $controller->create_one($args);
+                  }
+              } else {
+                  if (isset($_GET['edit'])) {
+                      $controller->edit_one($_GET['ID']);
+                  } elseif (isset($_GET['delete'])) {
+                      $controller->delete_one($_GET['ID']);
+                  } else {
+                      $controller->get_one($_GET['ID']);
+                  }
+
+              }
           }
 
-
       }
+  }else{
+
   }
 }

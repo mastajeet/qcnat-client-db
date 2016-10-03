@@ -105,7 +105,7 @@ class BaseModel
                 $this->updated_values[] = $item;
             }
         if($object::get_data_type($item,$value) == "has_many"){
-            $this->$item[] = $value;
+            $this->{$item}[] = $value;
         }else{
             $this->$item = $value;
         }

@@ -1,5 +1,5 @@
 <?php
-include_once('/base_model.php');
+include_once('base_model.php');
 /**
  * Created by PhpStorm.
  * User: jtbai
