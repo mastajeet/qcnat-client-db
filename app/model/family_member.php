@@ -52,17 +52,19 @@ class FamilyMember extends BaseModel
     }
 
     public function get_previous_lessons(){
-        # sessions need to be sorted by timestamp....
-        $join_info = JoinFamilyMemberLesson::define_table_info();
-        $lesson_info = Lesson::define_table_info();
-        $family_member_info = self::define_table_info();
-        $req = "SELECT ".$lesson_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$family_member_info['model_table_id']." = ".$this->family_member_id;
-        $rep = self::select($req);
-        $previous_lesson = array();
-        if($rep){
-            foreach($rep as $values){
+        if($this->family_member_id<>""){
+            # sessions need to be sorted by timestamp....
+            $join_info = JoinFamilyMemberLesson::define_table_info();
+            $lesson_info = Lesson::define_table_info();
+            $family_member_info = self::define_table_info();
+            $req = "SELECT ".$lesson_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$family_member_info['model_table_id']." = ".$this->family_member_id;
+            $rep = self::select($req);
+            $previous_lesson = array();
+            if($rep){
+                foreach($rep as $values){
 
-                $previous_lesson[] = new Lesson(($values[$lesson_info['model_table_id']]));
+                    $previous_lesson[] = new Lesson(($values[$lesson_info['model_table_id']]));
+                }
             }
         }
         $this->previous_lessons = $previous_lesson;
