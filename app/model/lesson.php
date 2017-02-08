@@ -6,7 +6,7 @@
  * Date: 2016-09-03
  * Time: 11:54 AM
  */
-include_once('app/model/base_model.php');
+include_once('base_model.php');
 class Lesson extends BaseModel{
 
     #### lesson info ####
