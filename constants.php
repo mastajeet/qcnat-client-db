@@ -14,7 +14,6 @@ const NAME = 'nom';
 const TELEPHONE = 'téléphone';
 const EMAIL = 'email';
 const ADDRESS = 'adresse';
-const FIRSTNAME = 'prénom';
 const LASTCOURSE = 'dernier cours';
 const DATE_OF_BIRTH = "date de naissance";
 const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
@@ -25,6 +24,8 @@ const DISPLAY_FAMILIES = "Familles";
 const ADD_MODIFY_FAMILY_MEMBER = "Ajouter / Modifier un membre d'une famille";
 const SEX = "sexe";
 const ROLE = 'role';
+const FIRSTNAME = 'prénom';
+const LASTNAME = 'nom de famille';
 
 
 ########## messages

@@ -24,6 +24,7 @@ $output->openrow();
 $output->closerow();
 
 $output->inputtext('name',FIRSTNAME,28,$family_member->name);
+$output->inputtext('name',LASTNAME,28,$family_member->lastname);
 $output->inputradio('sex',Sex::get_constants(),$family_member->sex,SEX,'VER');
 $output->inputradio('role',Role::get_constants(),$family_member->role,ROLE,'VER');
 $output->inputtime('date_of_birth',DATE_OF_BIRTH,$family_member->date_of_birth,array('Date'=>true,'Time'=>false));
@@ -50,28 +51,6 @@ $output->closecol();
 $output->closerow();
 $output->closetable();
 
-$family_member->get_previous_lessons();
-//print_r($family_member);
-$output->opentable(800);
-$output->openrow();
-$output->opencol(800);
-$output->addtexte(ucfirst(JOIN_FAMILY_MEMBER_LESSON),'titre');
-$output->closecol();
-$output->closerow();
-
-
-
-
-    foreach ($family_member->previous_lessons as $lesson) {
-        $output->openrow();
-        $output->opencol(1000);
-        $output->addtexte($lesson->to_string());
-        $output->closecol();
-        $output->closerow();
-
-    }
-
-$output->closetable();
 
 
 

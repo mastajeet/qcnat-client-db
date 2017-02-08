@@ -15,6 +15,7 @@ class FamilyMember extends BaseModel
     #### INFO #####
     public $family_member_id;
     public $name;
+    public $lastname;
     public $date_of_birth;
     public $sex;
     public $role;
@@ -32,6 +33,7 @@ class FamilyMember extends BaseModel
             'previous_lessons'=>'has_many',
             'last_lesson'=>'has_one',
             'name'=>'string',
+            'lastname'=>'string',
             'date_of_birth'=>'date',
             'sex'=>'int',
             'role'=>'int');

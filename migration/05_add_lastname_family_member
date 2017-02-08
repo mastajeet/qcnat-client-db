@@ -1,0 +1,1 @@
+ALTER TABLE `family_member` ADD `lastname` VARCHAR(255) NOT NULL AFTER `name`;

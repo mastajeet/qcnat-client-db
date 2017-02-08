@@ -57,6 +57,7 @@ class TestData
         $family_member = array(
             'family_id'=>$family_id,
             'name'=>'Michel',
+            'lastname'=>'Okay',
             'date_of_birth'=>'1955-08-31 23:45:00',
             'sex'=>Sex::MEN,
             'role'=>Role::PARENT);
@@ -67,6 +68,7 @@ class TestData
         $family_member = array(
             'family_id'=>$family_id,
             'name'=>'Rory',
+            'lastname'=>'Ballin',
             'date_of_birth'=>'2000-08-31 23:05:00',
             'sex'=>Sex::WOMEN,
             'role'=>Role::CHILD);

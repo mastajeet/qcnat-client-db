@@ -11,8 +11,8 @@ class FamilyMemberController extends base_controler
 
     function create_one($args)
     {
-        $family_member = new FamilyMember(array('family_id'=>$args['family_id']));
         $family = new Family($args['family_id']);
+        $family_member = new FamilyMember(array('family_id'=>$args['family_id'],'lastname'=>$family->name));
         include("app/view/family_member/add_modify_family_member.php");
     }
 
