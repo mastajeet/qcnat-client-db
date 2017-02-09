@@ -8,6 +8,14 @@
 
 
 const BD_CLIENTS = "Base de donnee de clients";
+
+#### PAGINATION DEFAULT VALUES ####
+const ORDER_BY = '1';
+const ORDER  = '';
+const FILTER = '1';
+const NB_PER_PAGE = 50;
+const PAGE = 0;
+
 #### Family ####
 const FAMILY = 'famille';
 const NAME = 'nom';
@@ -19,6 +27,8 @@ const DATE_OF_BIRTH = "date de naissance";
 const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
 const ADD_MODIFY = "Ajouter / Modifier";
 const DISPLAY_FAMILIES = "Familles";
+const INITIAL_ID = 1000;
+
 
 #### FamilyMember ####
 const ADD_MODIFY_FAMILY_MEMBER = "Ajouter / Modifier un membre d'une famille";

@@ -8,8 +8,8 @@
 include_once("base_controler.php");
 class FamilyController extends base_controler{
 
-    function get_list($filters){
-        $families = Family::get_all();
+    function get_list($filter, $order_by, $order,$nb_per_page, $page){
+        $families = Family::get_all($filter, $order_by, $order,$nb_per_page, $page);
         include("app/view/family/display_families.php");
     }
 

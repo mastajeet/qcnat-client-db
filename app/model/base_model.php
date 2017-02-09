@@ -16,27 +16,29 @@ class BaseModel
         return ("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $table_info['model_table_id'] . " = ");
     }
 
-    static function get_all($filter=1){
+    static function get_all($filter, $order_by, $order,$nb_per_page, $page)
+    {
         $object = get_called_class();
         $table_info = $object::define_table_info();
-        $request =  "SELECT ".$table_info['model_table_id']." FROM ". $table_info['model_table'] . " WHERE ".$filter;
-        $result = BaseModel::find($request,$object);
+        $request = "SELECT " . $table_info['model_table_id'] . " FROM " . $table_info['model_table'] . " WHERE " . $filter . " ORDER BY " . $order_by ." ". $order;
+        $result = BaseModel::find($request, $object);
         return $result;
     }
 
-    static function get_all_in_list($filter){
+    static function get_all_in_list($filter)
+    {
         $object = get_called_class();
         $table_info = $object::define_table_info();
-        $request =  "SELECT * FROM ". $table_info['model_table'] . " WHERE ".$filter;
+        $request = "SELECT * FROM " . $table_info['model_table'] . " WHERE " . $filter;
         $result_array = self::select($request);
         $result_set = array();
-        foreach($result_array as $k => $v){
+        foreach ($result_array as $k => $v) {
             $value = "";
-            foreach($v as $field=>$field_value){
-                if($field!=$table_info['model_table_id']){
-                    $value .= " ".$field_value;
-                }else{
-                    $object_id  = $field_value;
+            foreach ($v as $field => $field_value) {
+                if ($field != $table_info['model_table_id']) {
+                    $value .= " " . $field_value;
+                } else {
+                    $object_id = $field_value;
 
                 }
             }
@@ -44,26 +46,28 @@ class BaseModel
         }
         return $result_set;
 
-        $result = BaseModel::find($request,$object);
+        $result = BaseModel::find($request, $object);
         return $result;
     }
 
 
-    static function get_last_id(){
+    static function get_last_id()
+    {
         $object = get_called_class();
         $table_info = $object::define_table_info();
         $model_table_id = $table_info['model_table_id'];
-        $request =  "SELECT ".$table_info['model_table_id']." FROM ". $table_info['model_table'] . " WHERE 1 ORDER BY ". $table_info['model_table_id'] . " DESC LIMIT 0,1";
+        $request = "SELECT " . $table_info['model_table_id'] . " FROM " . $table_info['model_table'] . " WHERE 1 ORDER BY " . $table_info['model_table_id'] . " DESC LIMIT 0,1";
         $result = BaseModel::select($request);
         return $result[0][$model_table_id];
     }
 
 
-    static function last(){
+    static function last()
+    {
         $object = get_called_class();
         $table_info = $object::define_table_info();
         $model_table_id = $table_info['model_table_id'];
-        $request =  "SELECT * FROM ". $table_info['model_table'] . " WHERE 1 ORDER BY ". $table_info['model_table_id'] . " DESC LIMIT 0,1";
+        $request = "SELECT * FROM " . $table_info['model_table'] . " WHERE 1 ORDER BY " . $table_info['model_table_id'] . " DESC LIMIT 0,1";
         $result = BaseModel::select($request);
         return new $object($result[0][$model_table_id]);
     }
@@ -85,11 +89,11 @@ class BaseModel
     }
 
 
-    function __construct($Arg=null)
+    function __construct($Arg = null)
     {
         if (is_null($Arg)) {
             $object = get_called_class();
-            foreach($object::define_default_values() as $key => $value){
+            foreach ($object::define_default_values() as $key => $value) {
                 $this->$key = $value;
                 $this->updated_values[] = $key;
             }
@@ -105,13 +109,13 @@ class BaseModel
 
         if (is_numeric($Arg)) {
             //Assuming ID, search for ID
-            $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
+            $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
             $SQL->SELECT($this->find_by_id() . $Arg);
 
             $Req = $SQL->FetchAssoc();
 
             foreach ($Req as $Key => $val) {
-                if(!is_null($val) and $val!=""){
+                if (!is_null($val) and $val != "") {
                     $this->$Key = $val;
                     $this->updated_values[] = $Key;
                 }
@@ -128,9 +132,9 @@ class BaseModel
             if (!in_array($item, $this->updated_values)) {
                 $this->updated_values[] = $item;
             }
-        if($object::get_data_type($item,$value) == "has_many"){
+        if ($object::get_data_type($item, $value) == "has_many") {
             $this->{$item}[] = $value;
-        }else{
+        } else {
             $this->$item = $value;
         }
     }
@@ -139,13 +143,13 @@ class BaseModel
     {
         $object = get_called_class();
         $value_list = $object::define_data_types();
-        if(in_array($name,array_keys($value_list))){
+        if (in_array($name, array_keys($value_list))) {
             return $this->$name;
-        }elseif(in_array($name,get_class_methods($object))) {
+        } elseif (in_array($name, get_class_methods($object))) {
             $this->$name();
-        }else{
+        } else {
 
-            throw new Error(WARNING_UNKNOWN_MODEL_VALUE.": ".$name." for ".$object);
+            throw new Error(WARNING_UNKNOWN_MODEL_VALUE . ": " . $name . " for " . $object);
         }
 
     }
@@ -162,20 +166,20 @@ class BaseModel
         foreach ($this->updated_values as $value) {
             $value_type = $this->get_data_type($value, $this->$value);
 
-            if($value_type == "has_many") {
+            if ($value_type == "has_many") {
                 foreach ($this->$value as $model) {
                     $model->save();
                 }
-            }elseif($value_type == "has_one"){
+            } elseif ($value_type == "has_one") {
                 $this->$value->save();
-            }elseif($value_type != "ID"){
+            } elseif ($value_type != "ID") {
                 $field = $value;
                 $field_value = $this->convert_data($this->$value, $value_type);
                 $Req .= $field . "=" . $field_value . ", ";
             }
         }
         $Req = substr($Req, 0, -2);
-        $Req .= " WHERE " .$table_info['model_table_id'] . " = " . $this->$model_table_id;
+        $Req .= " WHERE " . $table_info['model_table_id'] . " = " . $this->$model_table_id;
         return ($Req);
     }
 
@@ -191,13 +195,13 @@ class BaseModel
         foreach ($this->updated_values as $value) {
             $value_type = $this->get_data_type($value, $this->$value);
 
-            if($value_type == "has_many") {
+            if ($value_type == "has_many") {
                 foreach ($this->$value as $model) {
                     $model->save();
                 }
-            }elseif($value_type == "has_one"){
+            } elseif ($value_type == "has_one") {
                 $this->$value->save();
-            }elseif($value_type != "ID"){
+            } elseif ($value_type != "ID") {
                 $fields .= "`" . $value . "`, ";
                 $field_value = $this->convert_data($this->$value, $value_type);
                 $values .= $field_value . ", ";
@@ -235,28 +239,29 @@ class BaseModel
 
     static function insert($Req)
     {
-        $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
+        $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
         $SQL->Insert($Req);
         $SQL->CloseConnection();
     }
 
     static function update($Req)
     {
-        $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
+        $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
         $SQL->Update($Req);
         $SQL->CloseConnection();
     }
 
 
-    static function find($Req,$class){
+    static function find($Req, $class)
+    {
         $table_info = $class::define_table_info();
         $model_table_id = $table_info['model_table_id'];
 
-        $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
+        $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
         $SQL->Select($Req);
         $return_value = array();
-        while($rep = $SQL->FetchAssoc()){
-            $return_value[] = new $class($rep[$model_table_id ]);
+        while ($rep = $SQL->FetchAssoc()) {
+            $return_value[] = new $class($rep[$model_table_id]);
         }
         $SQL->CloseConnection();
         return $return_value;
@@ -264,19 +269,18 @@ class BaseModel
 
     static function select($Req)
     {
-        $SQL = new SQLHelper(DB_HOST,DB_NAME,DB_USERNAME,DB_PASSWORD);
+        $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
         $SQL->Select($Req);
         $return_value = array();
-        if($SQL->NumRow()==0){
+        if ($SQL->NumRow() == 0) {
             return false;
         }
-        while($rep = $SQL->FetchAssoc()){
+        while ($rep = $SQL->FetchAssoc()) {
             $return_value[] = $rep;
         }
         $SQL->CloseConnection();
         return $return_value;
     }
-
 
 
     static function convert_data($data, $data_type)
@@ -292,7 +296,7 @@ class BaseModel
         }
 
         if ($data_type == "date") {
-            return "\"".$data."\"";
+            return "\"" . $data . "\"";
         }
 
 

@@ -20,7 +20,7 @@ function get_route($name,$args=null){
             return 'index.php?ressource=family&ID='.$args;
 
         CASE "display_families":
-            return 'index.php?ressource=family';
+            return 'index.php?ressource=family&order_by=name&order=ASC';
 
         CASE "edit_family_member":
             return 'index.php?ressource=family_member&ID='.$args.'&edit=true';

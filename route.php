@@ -64,7 +64,9 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
       }
 
       if(isset($controller)){
-          $filter = array();
+
+
+
           $args = $_GET;
           if(isset($_GET['action'])){
               $function_name = $_GET['action'];
@@ -72,8 +74,14 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
           }else{
 
               if (!isset($_GET['ID'])) {
-                  if (!isset($_GET['add']))
-                      $controller->get_list($filter);
+                  if (!isset($_GET['add'])) {
+                      $filter = isset($_GET['filter']) ? $_GET['filter'] : FILTER;
+                      $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : ORDER_BY;
+                      $order = isset($_GET['order']) ? $_GET['order'] : ORDER;
+                      $nb_per_page = isset($_GET['nb_per_page']) ? $_GET['nb_per_page'] :NB_PER_PAGE;
+                      $page = isset($_GET['page']) ? $_GET['page'] : PAGE;
+                      $controller->get_list($filter, $order_by, $order,$nb_per_page, $page);
+                  }
                   else {
                       $controller->create_one($args);
                   }

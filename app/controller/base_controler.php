@@ -14,7 +14,7 @@ class base_controler
         throw new NotImplementedException("No Model is specified");
     }
 
-    function get_list($filters){
+    function get_list($filter, $order_by, $order,$nb_per_page, $page){
         throw new NotImplementedException("No Model is specified");
     }
 
