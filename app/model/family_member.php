@@ -66,6 +66,8 @@ class FamilyMember extends BaseModel
                     $previous_lesson[] = new Lesson(($values[$lesson_info['model_table_id']]));
                 }
             }
+        }else{
+            $previous_lesson = [];
         }
         $this->previous_lessons = $previous_lesson;
     }
