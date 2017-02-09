@@ -43,7 +43,7 @@ $output->addform(ADD_JOIN_FAMILY_MEMBER_LESSON);
 $output->inputhidden('family_member_id',$family_member->family_member_id);
 $output->inputhidden_env('ressource','join_family_member_lesson');
 
-$output->inputselect('lesson_id',Lesson::get_all_in_list("session='A16'"),NULL,JOIN_FAMILY_MEMBER_LESSON);
+$output->inputselect('lesson_id',Lesson::get_all_in_list("session='H17'"),NULL,JOIN_FAMILY_MEMBER_LESSON);
 $output->formsubmit(ADD_MODIFY);
 
 
