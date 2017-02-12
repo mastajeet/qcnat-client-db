@@ -63,7 +63,7 @@ foreach($family->family_members as $member){
     $output->closecol();
 
     $output->opencol(100);
-    if($member->date_of_birth=="0000-00-00 00:00:00")
+    if($member->date_of_birth=="1970-01-01 00:00:00")
         $output->addtexte(" ");
     else
         $output->addtexte($member->date_of_birth);
