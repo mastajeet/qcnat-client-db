@@ -25,7 +25,7 @@ class BaseModel
         return $result;
     }
 
-    static function get_all_in_list($filter)
+    static function get_all_in_list($filter, $include_id=False)
     {
         $object = get_called_class();
         $table_info = $object::define_table_info();
@@ -38,6 +38,9 @@ class BaseModel
                 if ($field != $table_info['model_table_id']) {
                     $value .= " " . $field_value;
                 } else {
+                    if($include_id==True){
+                        $value = $field_value." - ".$value;
+                    }
                     $object_id = $field_value;
 
                 }
