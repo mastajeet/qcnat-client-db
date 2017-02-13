@@ -19,7 +19,7 @@ $output->openrow();
     $output->closecol();
 
     $output->opencol();
-        $output->addtexte($family->name);
+        $output->addlink(get_route('display_family',$family->family_id),$family->name);
     $output->closecol();
 $output->closerow();
 
