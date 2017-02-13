@@ -27,7 +27,7 @@ class FamilyMemberController extends base_controler
         $family_member ->save();
 
         $family_member_controller = new FamilyMemberController();
-        $family_member_controller->get_one($family_member->family_member_id);
+        $family_member_controller->edit_one($family_member->family_member_id);
 
     }
 }
