@@ -29,4 +29,11 @@ class LessonController extends base_controler
         include_once("app/view/lesson/sync_report.php");
     }
 
+    function edit_one($ID){
+        $lesson = new Lesson($ID);
+        $lesson->get_all_family_members();
+        include_once("app/view/lesson/add_modifie_lesson_family_members.php");
+    }
+
+
 }

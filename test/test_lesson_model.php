@@ -9,6 +9,7 @@
 
 
 require_once('../app/model/lesson.php');
+require_once('../app/model/join_family_member_lesson.php');
 require_once('../app/helper/MySQLHelper.php');
 require_once('../db_credentials.php');
 require_once('../constants.php');
@@ -60,6 +61,20 @@ class TestLessonModel extends PHPUnit_Framework_TestCase
 
         $my_retrieved_lesson_2 = Lesson::last();
         $this->assertEquals('Plaza Laval',$my_retrieved_lesson_2->pool);
+
+    }
+
+    function test_list_family_member_in_course(){
+
+        $lesson = TestData::generate_join_family_member_lesson();
+        $my_join = new JoinFamilyMemberLesson($lesson);
+        $my_join->save();
+
+        $my_retrieved_join = JoinFamilyMemberLesson::last();
+
+        $my_lesson = new Lesson($my_retrieved_join->lesson_id);
+        $my_lesson->get_all_family_members();
+        $this->assertEquals(count($my_lesson->family_members),1);
 
     }
 

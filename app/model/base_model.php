@@ -152,7 +152,7 @@ class BaseModel
             $this->$name();
         } else {
 
-            throw new Error(WARNING_UNKNOWN_MODEL_VALUE . ": " . $name . " for " . $object);
+            throw new Exception(WARNING_UNKNOWN_MODEL_VALUE . ": " . $name . " for " . $object);
         }
 
     }
