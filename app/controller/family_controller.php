@@ -36,17 +36,6 @@ class FamilyController extends base_controler{
         $family = new Family(prepare_post_request_data($request_data));
         $ID = $family->save();
         $this->get_one($ID);
-<<<<<<< Updated upstream
-=======
-    }
-
-    function nested_insert($request_data){
-        generate_from_add_family_member_to_lesson($request_data);
-
-        //logic for adding new nested family
-        $lesson_controller = new LessonController();
-        $lesson_controller->edit_one($request_data['lesson_id']);
->>>>>>> Stashed changes
 
     }
 }
