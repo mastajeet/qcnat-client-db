@@ -16,6 +16,7 @@ class BaseModel
         return ("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $table_info['model_table_id'] . " = ");
     }
 
+
     static function get_all($filter, $order_by, $order,$nb_per_page, $page)
     {
         $object = get_called_class();
@@ -257,6 +258,7 @@ class BaseModel
 
     static function find($Req, $class)
     {
+        print($Req);
         $table_info = $class::define_table_info();
         $model_table_id = $table_info['model_table_id'];
 
@@ -269,6 +271,15 @@ class BaseModel
         $SQL->CloseConnection();
         return $return_value;
     }
+
+
+    static function find_by($attribute,$value)
+    {
+        $object = get_called_class();
+        $table_info = $object::define_table_info();
+        return self::find("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $attribute . " = ".$value,$object);
+    }
+
 
     static function select($Req)
     {
