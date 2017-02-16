@@ -16,6 +16,11 @@ const FILTER = '1';
 const NB_PER_PAGE = 50;
 const PAGE = 0;
 
+
+#### FORM default VALUES #######
+
+const ACTION_ADD = 'ajouter';
+
 #### Family ####
 const FAMILY = 'famille';
 const NAME = 'nom';
@@ -28,7 +33,7 @@ const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
 const ADD_MODIFY = "Ajouter / Modifier";
 const DISPLAY_FAMILIES = "Familles";
 const INITIAL_ID = 1000;
-
+const DEFAULT_REGIONAL_CODE = 514;
 
 #### FamilyMember ####
 const ADD_MODIFY_FAMILY_MEMBER = "Ajouter / Modifier un membre d'une famille";

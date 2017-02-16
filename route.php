@@ -32,8 +32,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
         if(isset($controller)){
 
+            if(isset($_POST['action'])) {
+                $function_name = $_POST['action'];
+                $controller->$function_name($_REQUEST);
+            }else{
             $controller->post($_REQUEST);
-
+            }
         }
     }
 }

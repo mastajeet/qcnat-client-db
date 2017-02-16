@@ -37,8 +37,9 @@ class FamilyMember extends BaseModel
             'date_of_birth'=>'date',
             'sex'=>'int',
             'role'=>'int');
-
     }
+
+
 
     static function define_table_info(){
         return array(
@@ -70,6 +71,12 @@ class FamilyMember extends BaseModel
             $previous_lesson = [];
         }
         $this->previous_lessons = $previous_lesson;
+    }
+
+    public function get_family(){
+        if($this->family_id<>""){
+            $this->family = new Family($this->family_id);
+        }
     }
 
     public function get_last_lesson(){

@@ -32,6 +32,9 @@ class LessonController extends base_controler
     function edit_one($ID){
         $lesson = new Lesson($ID);
         $lesson->get_all_family_members();
+        foreach($lesson->family_members as $family_member){
+            $family_member->get_family();
+        }
         include_once("app/view/lesson/add_modifie_lesson_family_members.php");
     }
 
