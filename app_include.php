@@ -27,3 +27,4 @@ include_once ('app/controller/lesson_controller.php');
 include_once('app/model/join_family_member_lesson.php');
 include_once ('app/controller/join_family_member_lesson_controller.php');
 
+include_once('app/helper/nested_family_generation.php');

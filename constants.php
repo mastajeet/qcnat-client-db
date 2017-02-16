@@ -45,6 +45,7 @@ const LASTNAME = 'nom de famille';
 
 ########## messages
 const WARNING_UNKNOWN_MODEL_VALUE = 'Warning - unknown model value';
+const EXCEPTION_TOO_MANY_FAMILIES_FOUND = "Plusieurs familles ont ete trouvees pour ce numero de telephone";
 const NO_ROUTE = 'No route for';
 
 

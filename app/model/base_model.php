@@ -255,6 +255,14 @@ class BaseModel
     }
 
 
+    static function find_by($attribute,$value)
+     {
+         $object = get_called_class();
+         $table_info = $object::define_table_info();
+         return self::find("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $attribute . " = ".$value,$object);
+     }
+
+
     static function find($Req, $class)
     {
         $table_info = $class::define_table_info();
