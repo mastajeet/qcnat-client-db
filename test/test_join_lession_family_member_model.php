@@ -41,14 +41,24 @@ class TestJoinFamilyMemberLesson extends PHPUnit_Framework_TestCase
 
         $to_join = TestData::generate_join_family_member_lesson();
         $my_join = new JoinFamilyMemberLesson($to_join);
-
         $my_join->save();
-
-
         $my_retrieved_join = JoinFamilyMemberLesson::last();
         $this->assertEquals($my_retrieved_join ->family_member_id,$to_join['family_member_id']);
         $this->assertEquals($my_retrieved_join ->lesson_id,$to_join['lesson_id']);
+    }
 
+    function test_remove_a_lesson(){
+
+        $to_join = TestData::generate_join_family_member_lesson();
+        $my_join = new JoinFamilyMemberLesson($to_join);
+        $my_join->save();
+
+        $my_retrieved_join = JoinFamilyMemberLesson::last();
+        $my_retrieved_family_member = FamilyMember::last();
+        $my_retrieved_family_member->get_previous_lessons();
+        $this->assertEquals(count($my_retrieved_family_member->previous_lessons),1);
+        $my_retrieved_family_member->remove_lesson($my_retrieved_join->lesson_id);
+        $this->assertEquals(count($my_retrieved_family_member->previous_lessons),0);
 
     }
 

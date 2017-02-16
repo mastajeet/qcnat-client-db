@@ -19,7 +19,7 @@ $output->openrow();
     $output->closecol();
 
     $output->opencol();
-        $output->addtexte($family->name);
+        $output->addlink(get_route('display_family',$family->family_id),$family->name);
     $output->closecol();
 $output->closerow();
 
@@ -56,7 +56,6 @@ $output->closetable();
 
 
 $family_member->get_previous_lessons();
-//print_r($family_member);
 $output->opentable(800);
 $output->openrow();
 $output->opencol(800);
@@ -69,7 +68,10 @@ $output->closerow();
 
 foreach ($family_member->previous_lessons as $lesson) {
     $output->openrow();
-    $output->opencol(1000);
+    $output->opencol($width=20);
+        $output->addpic('ressource/icon/delete_ressource.png','',$link=get_route('remove_join_lesson_family_member',$lesson->lesson_id);
+    $output->closecol();
+    $output->opencol(980);
     $output->addtexte($lesson->to_string());
     $output->closecol();
     $output->closerow();

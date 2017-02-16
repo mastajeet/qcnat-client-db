@@ -72,6 +72,20 @@ class FamilyMember extends BaseModel
         $this->previous_lessons = $previous_lesson;
     }
 
+    public function remove_lesson($lesson_id){
+        $index_to_delete = Null;
+
+        foreach($this->previous_lessons as $index => $lesson){
+            if($lesson->lesson_id == $lesson_id){
+                $index_to_delete = array_search($lesson,$this->previous_lessons);
+            }
+
+        }
+        if(!is_null($index_to_delete)){
+            unset($this->previous_lessons[$index_to_delete]);
+        }
+    }
+
     public function get_last_lesson(){
         if(is_null($this->previous_lessons)){
             $this->get_previous_lessons();
