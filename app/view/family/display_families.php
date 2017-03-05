@@ -59,11 +59,11 @@ foreach($families as $family){
     $output->closecol();
 
     $output->opencol();
-    $output->addphone($family->tel_1);
+    $output->addphone($family->tel_1,true);
     $output->closecol();
 
     $output->opencol();
-    $output->addphone($family->tel_2);
+    $output->addphone($family->tel_2,true);
     $output->closecol();
     $output->closerow();
 

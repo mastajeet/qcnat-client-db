@@ -37,7 +37,7 @@ $output->addtexte(ucfirst(TELEPHONE),'Titre');
 $output->closecol();
 
 $output->opencol();
-$output->addphone($family->tel_1);
+$output->addphone($family->tel_1,true);
 $output->closecol();
 $output->closerow();
 
