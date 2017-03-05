@@ -48,6 +48,30 @@ class Lesson extends BaseModel{
         return($rep[0][$table_info['model_table_id']]);
     }
 
+
+    public function get_all_family_members(){
+        if($this->lesson_id<>""){
+            # sessions need to be sorted by timestamp....
+            $join_info = JoinFamilyMemberLesson::define_table_info();
+            $lesson_info = self::define_table_info();
+            $family_member_info = FamilyMember::define_table_info();
+            $req = "SELECT ".$family_member_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$lesson_info['model_table_id']." = ".$this->lesson_id;
+            $rep = self::select($req);
+            $family_members = array();
+            if($rep){
+                foreach($rep as $values){
+
+                    $family_members[] = new FamilyMember(($values[$family_member_info['model_table_id']]));
+                }
+            }
+        }else{
+            $family_members = [];
+        }
+        $this->family_members = $family_members;
+
+    }
+
+
     public function to_string(){
         return $this->session." - ".$this->pool." - ".$this->level."  ".$this->day." ".$this->time." (".$this->instructor.")";
     }

@@ -469,6 +469,33 @@ class HTMLHelper
 	function inputhidden_env($name, $value)	{
 		$this->addoutput("<input type=hidden name=\"".$name."\" value=\"".$value."\">");
 	}
-	
+
+	function add_tabular_data($field_name,$data){
+        $this->openrow();
+        $this->opencol();
+        $this->addtexte(ucfirst($field_name),"titre");
+        $this->closecol();
+
+        $this->opencol();
+        $this->addtexte($data);
+        $this->closecol();
+
+        $this->closerow();
+
+    }
+
+    function hr($nb_cols){
+
+        $this->openrow();
+        $this->opencol("",$nb_cols);
+        $delimiter="";
+        for($i=1;$i<=$nb_cols;$i++){
+            $delimiter .= "----------------------------------------------------";
+            }
+        $this->addtexte($delimiter);
+        $this->closecol();
+        $this->closerow();
+
+    }
 	
 }

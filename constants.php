@@ -16,6 +16,11 @@ const FILTER = '1';
 const NB_PER_PAGE = 50;
 const PAGE = 0;
 
+
+#### FORM default VALUES #######
+
+const ACTION_ADD = 'ajouter';
+
 #### Family ####
 const FAMILY = 'famille';
 const NAME = 'nom';
@@ -28,7 +33,7 @@ const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
 const ADD_MODIFY = "Ajouter / Modifier";
 const DISPLAY_FAMILIES = "Familles";
 const INITIAL_ID = 1000;
-
+const DEFAULT_REGIONAL_CODE = 514;
 
 #### FamilyMember ####
 const ADD_MODIFY_FAMILY_MEMBER = "Ajouter / Modifier un membre d'une famille";
@@ -40,6 +45,7 @@ const LASTNAME = 'nom de famille';
 
 ########## messages
 const WARNING_UNKNOWN_MODEL_VALUE = 'Warning - unknown model value';
+const EXCEPTION_TOO_MANY_FAMILIES_FOUND = "Plusieurs familles ont ete trouvees pour ce numero de telephone";
 const NO_ROUTE = 'No route for';
 
 
@@ -48,5 +54,21 @@ const QNDB_API = "http://www.quebecnatation.com/QNDB/api";
 const QNDB_API_LESSON_PATH = "http://www.quebecnatation.com/QNDB/api/lesson.php";
 const SESSION_ADDED = "session ajoutee:";
 const SESSION_UPDATED = "session mise-a-jour:";
+const DISPLAY_LESSONS = "lecons";
+const LESSON = "lecon";
+const SELECT_LESSON = "Selectionnez une lecon";
+
 const ADD_JOIN_FAMILY_MEMBER_LESSON = "ajouter un cours suivi";
 const JOIN_FAMILY_MEMBER_LESSON = "cours suivi";
+const LESSON_POOL = "piscine";
+const LESSON_LEVEL = "niveau";
+const LESSON_SESSION = "session";
+const LESSON_ADD_FAMILY_MEMBER= "ajouter des élèves à un cours";
+const LESSON_DAY= "jour";
+const LESSON_TIME= "heure";
+const LESSON_INSTRUCTOR = "instructeur";
+
+
+###### Form Actions
+
+const SELECT = "selectionnner";

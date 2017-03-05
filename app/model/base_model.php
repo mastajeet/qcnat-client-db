@@ -153,7 +153,7 @@ class BaseModel
             $this->$name();
         } else {
 
-            throw new Error(WARNING_UNKNOWN_MODEL_VALUE . ": " . $name . " for " . $object);
+            throw new Exception(WARNING_UNKNOWN_MODEL_VALUE . ": " . $name . " for " . $object);
         }
 
     }
@@ -254,6 +254,14 @@ class BaseModel
         $SQL->Update($Req);
         $SQL->CloseConnection();
     }
+
+
+    static function find_by($attribute,$value)
+     {
+         $object = get_called_class();
+         $table_info = $object::define_table_info();
+         return self::find("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $attribute . " = ".$value,$object);
+     }
 
 
     static function find($Req, $class)
