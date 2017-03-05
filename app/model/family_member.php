@@ -58,13 +58,15 @@ class FamilyMember extends BaseModel
             $join_info = JoinFamilyMemberLesson::define_table_info();
             $lesson_info = Lesson::define_table_info();
             $family_member_info = self::define_table_info();
-            $req = "SELECT ".$lesson_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$family_member_info['model_table_id']." = ".$this->family_member_id;
+            $req = "SELECT ".$lesson_info['model_table_id'].",".$join_info['model_table_id'].", prefix FROM ".$join_info['model_table']." WHERE ".$family_member_info['model_table_id']." = ".$this->family_member_id;
             $rep = self::select($req);
             $previous_lesson = array();
             if($rep){
                 foreach($rep as $values){
-
-                    $previous_lesson[] = new Lesson(($values[$lesson_info['model_table_id']]));
+                    $current_lesson = new Lesson(($values[$lesson_info['model_table_id']]));
+                    $current_lesson->join_id = ($values[$join_info['model_table_id']]);
+                    $current_lesson->prefix =  ($values['prefix']);
+                    $previous_lesson[] = $current_lesson;
                 }
             }
         }else{

@@ -79,6 +79,10 @@ $output->opencol(150);
 $output->addtexte(ucfirst(TELEPHONE),'titre');
 $output->closecol();
 
+$output->opencol(150);
+$output->addtexte(ucfirst(PREFIX),'titre');
+$output->closecol();
+
 $output->opencol(50);
 $output->addtexte(" ");
 $output->closecol();
@@ -107,6 +111,16 @@ foreach ($lesson->family_members as $family_member) {
     $output->opencol();
     $output->addphone($family_member->family->tel_1);
     $output->closecol();
+
+
+    foreach($family_member->previous_lessons as $lesson){
+        if($lesson->lesson_id == $lesson->lesson_id){
+            $output->opencol();
+            $output->addtexte($lesson->prefix);
+            $output->closecol();
+
+        }
+    }
 
 
     $output->opencol();
@@ -140,6 +154,11 @@ $output->closecol();
 
 $output->opencol();
 $output->addoutput("<input text name=FORM_Family_tel_1 id='family_tel_1' onblur=correct_phone_input()>");
+$output->closecol();
+
+
+$output->opencol();
+$output->addoutput("<input text name=FORM_Prefix >");
 $output->closecol();
 
 

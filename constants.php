@@ -57,7 +57,7 @@ const SESSION_UPDATED = "session mise-a-jour:";
 const DISPLAY_LESSONS = "lecons";
 const LESSON = "lecon";
 const SELECT_LESSON = "Selectionnez une lecon";
-
+const PREFIX = "Prefixe";
 const ADD_JOIN_FAMILY_MEMBER_LESSON = "ajouter un cours suivi";
 const JOIN_FAMILY_MEMBER_LESSON = "cours suivi";
 const LESSON_POOL = "piscine";

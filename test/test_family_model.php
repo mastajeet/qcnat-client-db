@@ -10,6 +10,7 @@
 
 require_once('../app/model/family.php');
 require_once('../app/model/family_member.php');
+require_once('../app/model/join_family_member_lesson.php');
 require_once('../app/helper/MySQLHelper.php');
 require_once('../db_credentials.php');
 require_once('../constants.php');
@@ -100,6 +101,29 @@ class TestFamilyModel extends PHPUnit_Framework_TestCase
         $last_family = new Family($family->save());
         $last_family->get_family_members();
         $this->assertEquals($last_family->family_members[0]->name,'Rory');
+    }
+
+
+    function test_accessing_taken_lesson_information_via_family_member(){
+        $to_join = TestData::generate_join_family_member_lesson_with_prefix();
+
+        $my_join = New JoinFamilyMemberLesson(
+            [
+                'family_member_id' => $to_join['family_member_id'],
+                'lesson_id' => $to_join['lesson_id'],
+                'prefix' => $to_join['prefix']
+            ]
+        );
+
+        $my_join->save();
+
+        $family_member = new FamilyMember($to_join['family_member_id']);
+        $family_member->get_previous_lessons();
+        foreach($family_member->previous_lessons as $lesson){
+            if($lesson->lesson_id== $to_join['lesson_id']){
+                $this->assertEquals($lesson->prefix,$to_join['prefix']);
+            }
+        }
     }
 
 }

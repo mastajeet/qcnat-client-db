@@ -1,0 +1,1 @@
+ALTER TABLE  `join_family_member_lesson` ADD  `prefix` VARCHAR( 25 ) NULL ;

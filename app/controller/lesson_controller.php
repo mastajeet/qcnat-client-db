@@ -39,6 +39,7 @@ class LessonController extends base_controler
         $lesson->get_all_family_members();
         foreach($lesson->family_members as $family_member){
             $family_member->get_family();
+            $family_member->get_previous_lessons();
         }
         include_once("app/view/lesson/add_modifie_lesson_family_members.php");
     }

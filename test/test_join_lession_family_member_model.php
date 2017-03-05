@@ -65,8 +65,28 @@ class TestJoinFamilyMemberLesson extends PHPUnit_Framework_TestCase
         $this->assertEquals($my_retrieved_join ->family_member_id,$to_join['family_member_id']);
         $this->assertEquals($my_retrieved_join ->lesson_id,$to_join['lesson_id']);
 
-
     }
+
+
+    function test_prefix_saving(){
+
+        $to_join = TestData::generate_join_family_member_lesson_with_prefix();
+
+        $my_join = New JoinFamilyMemberLesson(
+            [
+                'family_member_id' => $to_join['family_member_id'],
+                'lesson_id' => $to_join['lesson_id'],
+                'prefix' => $to_join['prefix']
+            ]
+        );
+
+        $my_join->save();
+        $my_retrieved_join = JoinFamilyMemberLesson::last();
+        $this->assertEquals($my_retrieved_join ->family_member_id,$to_join['family_member_id']);
+        $this->assertEquals($my_retrieved_join ->lesson_id,$to_join['lesson_id']);
+        $this->assertEquals($my_retrieved_join ->prefix,$to_join['prefix']);
+    }
+
 
 
 }

@@ -12,13 +12,15 @@ class JoinFamilyMemberLesson extends BaseModel
     public $join_family_member_lesson_id;
     public $family_member_id;
     public $lesson_id;
+    public $prefix;
 
     static function define_data_types()
     {
         return array(
             'join_family_member_lesson_id' => 'ID',
             'lesson_id' => 'int',
-            'family_member_id' => 'int'
+            'family_member_id' => 'int',
+            'prefix' => 'string'
         );
     }
 

@@ -92,7 +92,13 @@ class TestData
 
         return array('family_member_id'=>$my_family_member->family_member_id,
         'lesson_id'=>$my_lesson->lesson_id);
-
     }
+
+    static function generate_join_family_member_lesson_with_prefix(){
+        $return_array = self::generate_join_family_member_lesson();
+        $return_array['prefix'] = "(Value)";
+        return $return_array;
+    }
+
 
 }

@@ -51,11 +51,11 @@ function generate_from_add_family_member_to_lesson($request_data){
         $family_member->save();
     }
 
-
     $lesson_taken = New JoinFamilyMemberLesson(
         [
             'lesson_id' => $request_data["lesson_id"],
-            'family_member_id' => $family_member->family_member_id
+            'family_member_id' => $family_member->family_member_id,
+            'prefix' => $request_data["FORM_Prefix"]
         ]
     );
     $lesson_taken->save();
