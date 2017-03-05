@@ -31,6 +31,8 @@ function get_route($name,$args=null){
         CASE "add_family_member":
             return 'index.php?ressource=family_member&add=true';
 
+        CASE "display_lesson":
+            return 'index.php?ressource=lesson';
 
     }
     throw new UnexpectedValueException(NO_ROUTE.": ".$name);

@@ -29,6 +29,11 @@ class LessonController extends base_controler
         include_once("app/view/lesson/sync_report.php");
     }
 
+    function get_list($filter, $order_by, $order,$nb_per_page, $page){
+        $lessons = Lesson::get_all($filter, $order_by, $order,$nb_per_page, $page);
+        include("app/view/lesson/display_lessons.php");
+    }
+
     function edit_one($ID){
         $lesson = new Lesson($ID);
         $lesson->get_all_family_members();

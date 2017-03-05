@@ -54,6 +54,10 @@ const QNDB_API = "http://www.quebecnatation.com/QNDB/api";
 const QNDB_API_LESSON_PATH = "http://www.quebecnatation.com/QNDB/api/lesson.php";
 const SESSION_ADDED = "session ajoutee:";
 const SESSION_UPDATED = "session mise-a-jour:";
+const DISPLAY_LESSONS = "lecons";
+const LESSON = "lecon";
+const SELECT_LESSON = "Selectionnez une lecon";
+
 const ADD_JOIN_FAMILY_MEMBER_LESSON = "ajouter un cours suivi";
 const JOIN_FAMILY_MEMBER_LESSON = "cours suivi";
 const LESSON_POOL = "piscine";
@@ -63,3 +67,8 @@ const LESSON_ADD_FAMILY_MEMBER= "ajouter des élèves à un cours";
 const LESSON_DAY= "jour";
 const LESSON_TIME= "heure";
 const LESSON_INSTRUCTOR = "instructeur";
+
+
+###### Form Actions
+
+const SELECT = "selectionnner";
