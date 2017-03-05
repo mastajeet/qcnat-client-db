@@ -6,7 +6,6 @@
  * Time: 9:36 PM
  */
 include_once("base_controler.php");
-include_once("../helper/nested_family_generation.php");
 
 class FamilyController extends base_controler{
 

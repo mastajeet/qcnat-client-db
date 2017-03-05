@@ -265,7 +265,6 @@ class BaseModel
 
     static function find($Req, $class)
     {
-        print($Req);
         $table_info = $class::define_table_info();
         $model_table_id = $table_info['model_table_id'];
 
