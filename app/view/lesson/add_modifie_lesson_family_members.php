@@ -66,11 +66,6 @@ $output->closecol();
 
 
 $output->opencol(150);
-$output->addtexte(ucfirst(LASTNAME),'titre');
-$output->closecol();
-
-
-$output->opencol(150);
 $output->addtexte(ucfirst(FIRSTNAME),'titre');
 $output->closecol();
 
@@ -95,11 +90,6 @@ foreach ($lesson->family_members as $family_member) {
 
     $output->opencol();
     $output->addtexte($family_member->family->name);
-    $output->closecol();
-
-
-    $output->opencol();
-    $output->addtexte($family_member->lastname);
     $output->closecol();
 
 
@@ -139,12 +129,7 @@ $output->openrow();
 
 
 $output->opencol();
-$output->addoutput("<input text name=FORM_Family_name id='family_name' onblur=myBlurFunction()>");
-$output->closecol();
-
-
-$output->opencol();
-$output->addoutput("<input text name=FORM_Family_member_lastname id='family_member_lastname'>");
+$output->addoutput("<input text name=FORM_Family_name id='family_name'>");
 $output->closecol();
 
 
