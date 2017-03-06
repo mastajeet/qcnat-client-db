@@ -100,7 +100,7 @@ foreach($lessons as $day=>$times){
                 $output->closecol();
 
                 $output->opencol(175,1);
-                $output->addtexte($family_member->family->tel_1);
+                $output->addphone($family_member->family->tel_1,1);
                 $output->closecol();
 
                 $output->closerow();
