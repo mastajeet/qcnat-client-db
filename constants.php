@@ -41,6 +41,7 @@ const SEX = "sexe";
 const ROLE = 'role';
 const FIRSTNAME = 'prénom';
 const LASTNAME = 'nom de famille';
+const DATE_FORMAT = "d F Y";
 
 
 ########## messages

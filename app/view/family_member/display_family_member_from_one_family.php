@@ -63,10 +63,14 @@ foreach($family->family_members as $member){
     $output->closecol();
 
     $output->opencol(100);
-    if($member->date_of_birth=="1970-01-01 00:00:00")
+    if($member->age()=="") {
         $output->addtexte(" ");
-    else
-        $output->addtexte($member->date_of_birth);
+    }else{
+        $date_of_birth = New DateTime();
+        $date_of_birth->setTimestamp(strtotime($member->date_of_birth));
+        print_r($date_of_birth);
+        $output->addtexte($date_of_birth->format(DATE_FORMAT));
+    }
     $output->closecol();
 
     $output->opencol(600);
