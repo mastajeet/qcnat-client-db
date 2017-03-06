@@ -48,7 +48,7 @@ class FamilyMember extends BaseModel
     }
 
     public function age(){
-        if($this->date_of_birth!=0){
+        if($this->date_of_birth!=0 and $this->date_of_birth!="1970-01-01 00:00:00"){
             $date_of_birth = new DateTime();
             $date_of_birth->setTimestamp(strtotime($this->date_of_birth));
             $today = new DateTime();
