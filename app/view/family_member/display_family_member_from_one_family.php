@@ -68,7 +68,6 @@ foreach($family->family_members as $member){
     }else{
         $date_of_birth = New DateTime();
         $date_of_birth->setTimestamp(strtotime($member->date_of_birth));
-        print_r($date_of_birth);
         $output->addtexte($date_of_birth->format(DATE_FORMAT));
     }
     $output->closecol();
