@@ -38,4 +38,5 @@ class JoinFamilyMemberLesson extends BaseModel
         return $join;
 
     }
+
 }

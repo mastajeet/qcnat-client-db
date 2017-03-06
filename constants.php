@@ -31,7 +31,7 @@ const LASTCOURSE = 'dernier cours';
 const DATE_OF_BIRTH = "date de naissance";
 const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
 const ADD_MODIFY = "Ajouter / Modifier";
-const DISPLAY_FAMILIES = "Familles";
+const DISPLAY_FAMILIES = "familles";
 const INITIAL_ID = 1000;
 const DEFAULT_REGIONAL_CODE = 514;
 
@@ -46,8 +46,14 @@ const LASTNAME = 'nom de famille';
 ########## messages
 const WARNING_UNKNOWN_MODEL_VALUE = 'Warning - unknown model value';
 const EXCEPTION_TOO_MANY_FAMILIES_FOUND = "Plusieurs familles ont ete trouvees pour ce numero de telephone";
+const EXCEPTION_CANNOT_SPLIT_LESSON_BY_TIME = "La fonctionnalite de specifier une heure pour les lecon n'est pas implementee";
 const NO_ROUTE = 'No route for';
 
+
+##### Cahier
+
+const DISPLAY_CAHIER = "cahiers";
+const AVAILABLE_CAHIERS = "cahiers disponibles";
 
 ##### Lesson
 const QNDB_API = "http://www.quebecnatation.com/QNDB/api";

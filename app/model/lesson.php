@@ -7,7 +7,9 @@
  * Time: 11:54 AM
  */
 include_once('base_model.php');
-class Lesson extends BaseModel{
+
+class Lesson extends BaseModel
+{
 
     #### lesson info ####
 
@@ -24,7 +26,7 @@ class Lesson extends BaseModel{
     {
         return array(
             'lesson_id' => 'ID',
-            'pool'=>'string',
+            'pool' => 'string',
             'session' => 'string',
             'instructor' => 'string',
             'day' => 'string',
@@ -32,39 +34,88 @@ class Lesson extends BaseModel{
         );
     }
 
-    static function define_table_info(){
+    static function define_table_info()
+    {
         return array(
-            'model_table' =>"lesson",
-            'model_table_id'=> "lesson_id");
+            'model_table' => "lesson",
+            'model_table_id' => "lesson_id");
     }
 
-    static function is_lesson_in_db($session, $pool, $day, $time, $level){
-        $req = "SELECT * FROM lesson WHERE session='".$session."' and pool='".$pool."' and day='".$day."' and time='".$time."' and level='".$level."'";
+    static function is_lesson_in_db($session, $pool, $day, $time, $level)
+    {
+        $req = "SELECT * FROM lesson WHERE session='" . $session . "' and pool='" . $pool . "' and day='" . $day . "' and time='" . $time . "' and level='" . $level . "'";
         $table_info = self::define_table_info();
         $rep = self::select($req);
-        if(!$rep){
+        if (!$rep) {
             return false;
         }
-        return($rep[0][$table_info['model_table_id']]);
+        return ($rep[0][$table_info['model_table_id']]);
     }
 
+    static function get_all_sessions()
+    {
+        $table_info = self::define_table_info();
+        $req = "SELECT distinct(session) FROM lesson ORDER BY " . $table_info['model_table_id'] . " DESC";
+        self::select($req);
+        $ret = [];
+        foreach (self::select($req) as $elem) {
+            $ret[$elem['session']] = null;
+        }
+        return ($ret);
+    }
 
-    public function get_all_family_members(){
-        if($this->lesson_id<>""){
+    static function get_all_pools($session)
+    {
+        $req = "SELECT distinct(pool) FROM lesson WHERE session='" . $session . "' ORDER BY pool DESC";
+        $ret = [];
+        foreach (self::select($req) as $elem) {
+            $ret[$elem['pool']] = null;
+        }
+        return ($ret);
+    }
+
+    static function get_all_days($session, $pool)
+    {
+        $table_info = self::define_table_info();
+        $req = "SELECT distinct(day) FROM lesson WHERE session='" . $session . "' and pool='" . $pool . "' ORDER BY " . $table_info['model_table_id'] . " DESC";
+        $ret = [];
+        foreach (self::select($req) as $elem) {
+            $ret[$elem['day']] = null;
+        }
+        return ($ret);
+    }
+
+    static function get_all_lessons($session, $pool, $day = Null, $time = Null)
+    {
+        $table_info = self::define_table_info();
+        if (is_null($time) and is_null($day)) {
+            $req = "SELECT " . $table_info['model_table_id'] . " FROM lesson WHERE session='" . $session . "' and pool='" . $pool . "' ORDER BY time ASC";
+            $lessons= [];
+            foreach(self::select($req) as $lesson){
+                $lessons[$lesson[$table_info['model_table_id']]] = New Lesson($lesson[$table_info['model_table_id']]);
+            }
+            return($lessons);
+        } else {
+            throw new NotImplementedException(EXCEPTION_CANNOT_SPLIT_LESSON_BY_TIME);
+        }
+    }
+
+    public function get_all_family_members()
+    {
+        if ($this->lesson_id <> "") {
             # sessions need to be sorted by timestamp....
             $join_info = JoinFamilyMemberLesson::define_table_info();
             $lesson_info = self::define_table_info();
             $family_member_info = FamilyMember::define_table_info();
-            $req = "SELECT ".$family_member_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$lesson_info['model_table_id']." = ".$this->lesson_id;
+            $req = "SELECT " . $family_member_info['model_table_id'] . " FROM " . $join_info['model_table'] . " WHERE " . $lesson_info['model_table_id'] . " = " . $this->lesson_id;
             $rep = self::select($req);
             $family_members = array();
-            if($rep){
-                foreach($rep as $values){
-
+            if ($rep) {
+                foreach ($rep as $values) {
                     $family_members[] = new FamilyMember(($values[$family_member_info['model_table_id']]));
                 }
             }
-        }else{
+        } else {
             $family_members = [];
         }
         $this->family_members = $family_members;
@@ -72,7 +123,8 @@ class Lesson extends BaseModel{
     }
 
 
-    public function to_string(){
-        return $this->session." - ".$this->pool." - ".$this->level."  ".$this->day." ".$this->time." (".$this->instructor.")";
+    public function to_string()
+    {
+        return $this->session . " - " . $this->pool . " - " . $this->level . "  " . $this->day . " " . $this->time . " (" . $this->instructor . ")";
     }
 }

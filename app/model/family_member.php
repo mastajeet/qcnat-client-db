@@ -87,9 +87,10 @@ class FamilyMember extends BaseModel
         }
 
         if(count($this->previous_lessons)>0){
-
             $this->last_lesson = $this->previous_lessons[count($this->previous_lessons)-1]->to_string();
         }
     }
+
+
 
 }

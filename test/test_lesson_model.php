@@ -78,4 +78,27 @@ class TestLessonModel extends PHPUnit_Framework_TestCase
 
     }
 
+    function test_retrieve_all_sessions(){
+        $sessions = Lesson::get_all_sessions();
+        $this->assertEquals(count($sessions),2);
+    }
+
+
+    function test_retrieve_all_pool(){
+        $pools = Lesson::get_all_pools('Hiver 2016');
+        $this->assertEquals(count($pools),2);
+    }
+
+    function test_retrieve_all_days(){
+        $days = Lesson::get_all_days('Hiver 2016','Limoilou');
+        $this->assertEquals(count($days),1);
+    }
+
+
+    function test_retrieve_all_lesson_without_day(){
+        $cours = Lesson::get_all_lessons('Hiver 2016','Limoilou');
+        $this->assertEquals(46,count($cours));
+    }
+
+
 }

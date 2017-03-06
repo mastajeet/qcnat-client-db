@@ -260,8 +260,23 @@ class BaseModel
      {
          $object = get_called_class();
          $table_info = $object::define_table_info();
-         return self::find("SELECT * FROM " . $table_info['model_table'] . " WHERE " . $attribute . " = ".$value,$object);
+         $where_clause = "";
+         if(!is_array($attribute) and !is_array($value)){
+             $where_clause = $attribute . " = ".$value;
+         }else{
+             if(count($attribute)==count($value)){
+                 for($i=0; $i<count($attribute); $i++) {
+                     $where_clause .= $attribute[$i].' = '.$value[$i]." and ";
+                 }
+                 $where_clause = substr($where_clause,0,-5);
+             }else{
+                 throw new Exception();
+             }
+         }
+
+         return self::find("SELECT * FROM " . $table_info['model_table'] . " WHERE " .$where_clause ,$object);
      }
+
 
     static function find($Req, $class)
     {

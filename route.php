@@ -62,7 +62,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
           }
 
           CASE 'join_family_member_lesson': {
-              $controller = new JoinFamilyMemberLesson();
+              $controller = new JoinFamilyMemberLessonController();
               break;
           }
       }
@@ -74,7 +74,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
           $args = $_GET;
           if(isset($_GET['action'])){
               $function_name = $_GET['action'];
-              $controller->$function_name();
+              $controller->$function_name($_GET);
           }else{
 
               if (!isset($_GET['ID'])) {

@@ -6,5 +6,6 @@
  * Time: 11:31 PM
  */
 print(BD_CLIENTS."<br><br>");
-print("<a href=".get_route('display_families').">".DISPLAY_FAMILIES."</a><br>");
-print("<a href=".get_route('display_lesson').">".DISPLAY_LESSONS."</a><br>");
+print("<a href=".get_route('display_families').">".ucfirst(DISPLAY_FAMILIES)."</a><br>");
+print("<a href=".get_route('display_lesson').">".ucfirst(DISPLAY_LESSONS)."</a><br>");
+print("<a href=".get_route('display_cahier').">".ucfirst(DISPLAY_CAHIER)."</a><br>");
