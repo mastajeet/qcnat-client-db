@@ -28,7 +28,7 @@ foreach($lessons as $day=>$times){
 
     $output->closerow();
 
-    foreach($times as $time=>$levels){
+    foreach($times as $time=>$lessons){
 
         $output->openrow();
         $output->opencol(25,1);
@@ -44,8 +44,7 @@ foreach($lessons as $day=>$times){
         $output->closecol();
         $output->closerow();
 
-        foreach($levels as $level=>$family_members){
-
+        foreach($lessons as $lesson){
 
 
             $output->openrow();
@@ -62,12 +61,12 @@ foreach($lessons as $day=>$times){
             $output->closecol();
 
             $output->opencol(425,4);
-            $output->addtexte($level);
+            $output->addlink('?ressource=lesson&edit=true&ID='.$lesson->lesson_id,$lesson->level);
             $output->closecol();
 
 
 
-            foreach($family_members as $family_member){
+            foreach($lesson->family_members as $family_member){
 
                 $output->openrow();
                 $output->opencol(25,1);
