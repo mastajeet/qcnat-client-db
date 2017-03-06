@@ -48,7 +48,15 @@ class FamilyMember extends BaseModel
     }
 
     public function age(){
-        return 12;
+        if($this->date_of_birth!=0){
+            $date_of_birth = new DateTime();
+            $date_of_birth->setTimestamp(strtotime($this->date_of_birth));
+            $today = new DateTime();
+            $today->setTimestamp(time());
+            $diff = $today->diff($date_of_birth);
+            return $diff->y;
+        }
+
         #find a age function somewhere on the internet....
     }
 

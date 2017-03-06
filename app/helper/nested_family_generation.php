@@ -45,7 +45,8 @@ function generate_from_add_family_member_to_lesson($request_data){
             [
                 'name'=>$family_member_name,
                 'lastname'=>$family_member_lastname,
-                'family_id'=>$family->family_id
+                'family_id'=>$family->family_id,
+                'date_of_birth'=>0
             ]
         );
         $family_member->save();
