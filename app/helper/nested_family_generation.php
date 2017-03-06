@@ -10,7 +10,7 @@ function generate_from_add_family_member_to_lesson($request_data){
 
 
     $family_name = $request_data['FORM_Family_name'];
-    $family_member_lastname= $request_data['FORM_Family_member_lastname'];
+    $family_member_lastname= $request_data['FORM_Family_name'];
     $family_tel_1= $request_data['FORM_Family_tel_1'];
     $family_member_name= $request_data['FORM_Family_member_name'];
 
