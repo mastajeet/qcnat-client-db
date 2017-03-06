@@ -35,7 +35,8 @@ class JoinFamilyMemberLessonController extends base_controler
             if(!is_array($lessons[$lesson->day][$lesson->time][$lesson->level])){
                 $lessons[$lesson->day][$lesson->time][$lesson->level] = $lesson->family_members;
                 foreach($lessons[$lesson->day][$lesson->time][$lesson->level] as $family_member){
-                    $family_member->lesson_info = JoinFamilyMemberLesson::find_by(['lesson_id','family_member_id'],[$lesson->lesson_id,$family_member->family_member_id]);
+                    $join = JoinFamilyMemberLesson::find_by(['lesson_id','family_member_id'],[$lesson->lesson_id,$family_member->family_member_id]);
+                    $family_member->lesson_info = array('prefix'=>$join[0]->prefix);
                     $family_member->get_family();
                 }
             }
