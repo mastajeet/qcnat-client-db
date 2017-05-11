@@ -33,7 +33,7 @@ const ADD_MODIFY_FAMILY = "Ajouter / Modifier une famille";
 const ADD_MODIFY = "Ajouter / Modifier";
 const DISPLAY_FAMILIES = "familles";
 const INITIAL_ID = 1000;
-const DEFAULT_REGIONAL_CODE = 514;
+const DEFAULT_REGIONAL_CODE = 418;
 
 #### FamilyMember ####
 const ADD_MODIFY_FAMILY_MEMBER = "Ajouter / Modifier un membre d'une famille";
