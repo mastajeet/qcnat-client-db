@@ -22,7 +22,7 @@ foreach($lessons as $day=>$times){
         $output->addtexte(" ");
     $output->closecol();
 
-    $output->opencol(575,6);
+    $output->opencol(575,7);
     $output->addtexte($day);
     $output->closecol();
 
@@ -39,7 +39,7 @@ foreach($lessons as $day=>$times){
         $output->addtexte(" ");
         $output->closecol();
 
-        $output->opencol(550,5);
+        $output->opencol(550,6);
         $output->addtexte($time);
         $output->closecol();
         $output->closerow();
@@ -60,12 +60,12 @@ foreach($lessons as $day=>$times){
             $output->addtexte(" ");
             $output->closecol();
 
-            $output->opencol(425,4);
+            $output->opencol(425,5);
             $output->addlink('?ressource=lesson&edit=true&ID='.$lesson->lesson_id,$lesson->level);
             $output->closecol();
 
 
-
+            $family_member_index = 1;
             foreach($lesson->family_members as $family_member){
 
                 $output->openrow();
@@ -90,6 +90,10 @@ foreach($lessons as $day=>$times){
                 $output->addtexte($prefix);
                 $output->closecol();
 
+                $output->opencol(25,1);
+                $output->addtexte($family_member_index);
+                $output->closecol();
+
                 $output->opencol(200,1);
                 $output->addtexte($family_member->name." ".$family_member->lastname);
                 $output->closecol();
@@ -103,6 +107,8 @@ foreach($lessons as $day=>$times){
                 $output->closecol();
 
                 $output->closerow();
+
+                $family_member_index++;
             }
         }
     }
