@@ -55,7 +55,7 @@ class Lesson extends BaseModel
     static function get_all_sessions()
     {
         $table_info = self::define_table_info();
-        $req = "SELECT distinct(session) FROM lesson ORDER BY " . $table_info['model_table_id'] . " DESC";
+        $req = "SELECT distinct(session), max(". $table_info['model_table_id'].") as m FROM lesson GROUP BY session ORDER BY m DESC";
         self::select($req);
         $ret = [];
         foreach (self::select($req) as $elem) {

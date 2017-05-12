@@ -18,10 +18,24 @@ class JoinFamilyMemberLessonController extends base_controler
     }
 
     function obtain_cahier($filter){
-        $unordered_lessons = Lesson::get_all_lessons($filter['filter']['session'],$filter['filter']['pool']);
-        $lessons = [];
-        $session = $filter['filter']['session'];
         $pool = $filter['filter']['pool'];
+        $session = $filter['filter']['session'];
+        $lessons = $this->generate_cahier($session,$pool);
+        include_once("app/view/join_family_member_lesson/display_cahier.php");
+    }
+
+    function obtain_carton($filter){
+        $pool = $filter['filter']['pool'];
+        $session = $filter['filter']['session'];
+        $lessons = $this->generate_cahier($session,$pool);
+        include_once("app/view/join_family_member_lesson/display_carton.php");
+
+    }
+
+
+    private function generate_cahier($session,$pool){
+        $unordered_lessons = Lesson::get_all_lessons($session,$pool);
+        $lessons = [];
         foreach($unordered_lessons as $lesson){
             $lesson->get_all_family_members();
             if(!is_array($lessons[$lesson->day])){
@@ -40,14 +54,19 @@ class JoinFamilyMemberLessonController extends base_controler
                     $family_member->get_family();
                 }
             }
-
-
         }
-        include_once("app/view/join_family_member_lesson/display_cahier.php");
+
+        return $lessons;
     }
 
     function get_list($filter, $order_by, $order,$nb_per_page, $page){
         $cahier = Lesson::get_all_sessions();
+        $cahier = $this->fill_cahier($cahier,$filter);
+        include_once("app/view/join_family_member_lesson/list_cahier.php");
+    }
+
+
+    function fill_cahier($cahier, $filter){
         if($filter!=1){
             if(array_key_exists('session',$filter)){
                 $cahier[$filter['session']] = Lesson::get_all_pools($filter['session']);
@@ -56,7 +75,7 @@ class JoinFamilyMemberLessonController extends base_controler
                 $cahier[$filter['session']][$filter['pool']] = Lesson::get_all_days($filter['session'],$filter['pool']);
             }
         }
-        include_once("app/view/join_family_member_lesson/list_cahier.php");
+        return $cahier;
     }
 
 }

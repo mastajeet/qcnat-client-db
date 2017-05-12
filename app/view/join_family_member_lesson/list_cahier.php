@@ -41,11 +41,12 @@ foreach ($cahier as $session => $pools) {
                 $output->addtexte(" ");
             $output->closecol();
 
-            $output->opencol(25, 1);
+            $output->opencol(75, 1);
                 $output->addpic("ressource/icon/print_ressource.png",'',get_route('obtain_cahier')."&filter[session]=" . $session."&filter[pool]=".$pool);
+                $output->addpic("ressource/icon/edit_ressource.png",'',get_route('obtain_carton')."&filter[session]=" . $session."&filter[pool]=".$pool);
             $output->closecol();
 
-            $output->opencol(950, 1);
+            $output->opencol(925, 1);
             $output->addtexte($pool);
             $output->closecol();
             $output->closerow();

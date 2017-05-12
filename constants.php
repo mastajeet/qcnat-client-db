@@ -79,3 +79,7 @@ const LESSON_INSTRUCTOR = "instructeur";
 ###### Form Actions
 
 const SELECT = "selectionnner";
+
+###### Preinscription
+
+const INSCRIPTION = "Inscription";

@@ -94,7 +94,7 @@ class HTMLHelper
 	}
 	
 	function opencol($width="", $colspan="1", $valign="top",$class="",$other="")	{
-		$this->addoutput("<td width=\"".$width."\" colspan=".$colspan." valign=".$valign." class=\"".$class."\">");
+		$this->addoutput("<td width=\"".$width."\" colspan=".$colspan." valign=".$valign." class=\"".$class."\" $other>");
 	}
 	
 	function closecol()	{
