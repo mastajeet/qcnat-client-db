@@ -60,6 +60,11 @@ $output->opentable($width = 750);
 
 $output->openrow();
 
+$output->opencol(20);
+$output->addtexte(" ");
+$output->closecol();
+
+
 $output->opencol(150);
 $output->addtexte(ucfirst(FAMILY),'titre');
 $output->closecol();
@@ -84,9 +89,13 @@ $output->closecol();
 
 $output->closerow();
 
-
+$family_member_index = 1;
 foreach ($lesson->family_members as $family_member) {
     $output->openrow();
+
+    $output->opencol();
+    $output->addtexte($family_member_index);
+    $output->closecol();
 
     $output->opencol();
     $output->addtexte($family_member->family->name);
@@ -118,6 +127,7 @@ foreach ($lesson->family_members as $family_member) {
     $output->closecol();
 
     $output->closerow();
+    $family_member_index++;
 }
 
 
