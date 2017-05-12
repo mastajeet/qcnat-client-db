@@ -45,7 +45,7 @@ $next_id = ($lesson->lesson_id)+1;
 $output->addpic('ressource/icon/next_ressource.png','','index.php?ressource=lesson&edit=true&ID='.$next_id);
 $output->addtexte(ucfirst(LESSON_ADD_FAMILY_MEMBER), 'titre');
 
-$output->opentable($width = 750);
+$output->opentable($width = 670);
 
 $output->add_tabular_data(LESSON_POOL, $lesson->pool);
 $output->add_tabular_data(LESSON_DAY, $lesson->day);
@@ -55,13 +55,13 @@ $output->add_tabular_data(LESSON_INSTRUCTOR, $lesson->instructor);
 $output->hr(2);
 $output->closetable();
 
-$output->opentable($width = 750);
+$output->opentable($width = 670);
 
 
 $output->openrow();
 
 $output->opencol(20);
-$output->addtexte(" ");
+$output->addtexte("");
 $output->closecol();
 
 
@@ -93,7 +93,7 @@ $family_member_index = 1;
 foreach ($lesson->family_members as $family_member) {
     $output->openrow();
 
-    $output->opencol();
+    $output->opencol(20);
     $output->addtexte($family_member_index);
     $output->closecol();
 
@@ -136,6 +136,10 @@ $output->addoutput("<input hidden name=action value=nested_insert>");
 $output->addoutput("<input hidden name=ressource value='family'>");
 $output->addoutput("<input hidden name=lesson_id value='".$lesson->lesson_id."'>");
 $output->openrow();
+
+$output->opencol();
+$output->addoutput($family_member_index);
+$output->closecol();
 
 
 $output->opencol();
