@@ -178,7 +178,7 @@ class SQLHelper
 # Return Type: boolean
 # Description: Make a Delete Query
 ###########################################
-	function Delete_data($sql)
+	function Delete($sql)
 	{
 		return $this->Query($sql);
 	}

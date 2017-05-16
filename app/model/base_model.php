@@ -246,6 +246,15 @@ class BaseModel
 
     }
 
+    function destroy()
+    {
+        $object = get_called_class();
+        $table_info = $object::define_table_info();
+        $req = "DELETE FROM " . $table_info['model_table'] . " WHERE " . $table_info['model_table_id'] . " = ".$this->{$table_info['model_table_id']};
+        self::delete($req);
+        return True;
+    }
+
     static function insert($Req)
     {
         $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
@@ -259,6 +268,14 @@ class BaseModel
         $SQL->Update($Req);
         $SQL->CloseConnection();
     }
+
+    static function delete($Req)
+    {
+        $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $SQL->Delete($Req);
+        $SQL->CloseConnection();
+    }
+
 
 
     static function find_by($attribute,$value)

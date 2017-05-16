@@ -99,7 +99,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
                   if (isset($_GET['edit'])) {
                       $controller->edit_one($_GET['ID']);
                   } elseif (isset($_GET['delete'])) {
-                      $controller->delete_one($_GET['ID']);
+                      $controller->delete_one($_GET['ToConfirm'],$_GET['ID']);
                   } else {
                       $controller->get_one($_GET['ID']);
                   }

@@ -20,6 +20,7 @@ class Lesson extends BaseModel
     public $level;
     public $session;
     public $instructor;
+    public $inscriptions;
 
 
     static function define_data_types()
@@ -129,7 +130,27 @@ class Lesson extends BaseModel
             $family_members = [];
         }
         $this->family_members = $family_members;
+    }
 
+    public function get_all_inscriptions()
+    {
+        if ($this->lesson_id <> "") {
+            # sessions need to be sorted by timestamp....
+            $join_info = JoinFamilyMemberLesson::define_table_info();
+            $lesson_info = self::define_table_info();
+            $req = "SELECT " . $join_info['model_table_id'] . " FROM " . $join_info['model_table'] . " WHERE " . $lesson_info['model_table_id'] . " = " . $this->lesson_id;
+            $rep = self::select($req);
+            $join_family_member_lesson = array();
+            if ($rep) {
+                foreach ($rep as $values) {
+                    $join_family_member_lesson[] = new JoinFamilyMemberLesson($values[$join_info['model_table_id']]);
+                }
+            }
+        } else {
+            $join_family_member_lesson = [];
+        }
+
+        $this->inscriptions = $join_family_member_lesson;
     }
 
 

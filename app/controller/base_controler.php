@@ -26,7 +26,7 @@ class base_controler
         throw new NotImplementedException("No Model is specified");
     }
 
-    function delete_one($ID){
+    function delete_one($ToConfirm, $ID){
         throw new NotImplementedException("No Model is specified");
     }
 

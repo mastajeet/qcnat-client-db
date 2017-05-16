@@ -13,6 +13,16 @@ class JoinFamilyMemberLesson extends BaseModel
     public $family_member_id;
     public $lesson_id;
     public $prefix;
+    public $family_member;
+    public $lesson;
+
+
+    function __construct($Arg)
+    {
+        parent::__construct($Arg);
+        $this->family_member = new FamilyMember($this->family_member_id);
+        $this->lesson = new Lesson($this->lesson_id);
+    }
 
     static function define_data_types()
     {

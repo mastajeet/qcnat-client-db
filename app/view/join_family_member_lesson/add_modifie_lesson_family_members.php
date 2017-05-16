@@ -61,7 +61,7 @@ $output->opentable($width = 670);
 $output->openrow();
 
 $output->opencol(20);
-$output->addtexte("");
+$output->addtexte(" ");
 $output->closecol();
 
 
@@ -90,8 +90,15 @@ $output->closecol();
 $output->closerow();
 
 $family_member_index = 1;
-foreach ($lesson->family_members as $family_member) {
+foreach ($lesson->inscriptions as $inscription) {
     $output->openrow();
+    $family_member = $inscription->family_member;
+
+
+    $output->opencol();
+    $output->addlink(get_route('delete_join_family_member',$inscription->join_family_member_lesson_id),"x");
+    $output->closecol();
+
 
     $output->opencol(20);
     $output->addtexte($family_member_index);
@@ -136,6 +143,11 @@ $output->addoutput("<input hidden name=action value=nested_insert>");
 $output->addoutput("<input hidden name=ressource value='family'>");
 $output->addoutput("<input hidden name=lesson_id value='".$lesson->lesson_id."'>");
 $output->openrow();
+
+$output->opencol();
+$output->addoutput(" ");
+$output->closecol();
+
 
 $output->opencol();
 $output->addoutput($family_member_index);

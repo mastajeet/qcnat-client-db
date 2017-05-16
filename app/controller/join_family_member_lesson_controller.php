@@ -78,14 +78,29 @@ class JoinFamilyMemberLessonController extends base_controler
         return $cahier;
     }
 
-    function edit_one($ID){
-        $lesson = new Lesson($ID);
+    function edit_one($lesson_id){
+        $lesson = new Lesson($lesson_id);
         $lesson->get_all_family_members();
-        foreach($lesson->family_members as $family_member){
-            $family_member->get_family();
-            $family_member->get_previous_lessons();
+        $lesson->get_all_inscriptions();
+
+        foreach($lesson->inscriptions as $inscription){
+            $inscription->family_member->get_family();
+            $inscription->family_member->get_previous_lessons();
+
         }
         include_once("app/view/join_family_member_lesson/add_modifie_lesson_family_members.php");
+    }
+
+    function delete_one($ToConfirm,$join_id){
+        $join_family_member_lesson = new JoinFamilyMemberLesson($join_id);
+        $lesson_id = $join_family_member_lesson->lesson_id;
+
+        if(!$ToConfirm){
+            $join_family_member_lesson->destroy();
+        }
+
+        $this->edit_one($lesson_id);
+
     }
 
 }
