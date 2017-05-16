@@ -42,7 +42,7 @@
 
 $output = new HTMLHelper();
 $next_id = ($lesson->lesson_id)+1;
-$output->addpic('ressource/icon/next_ressource.png','','index.php?ressource=lesson&edit=true&ID='.$next_id);
+$output->addpic('ressource/icon/next_ressource.png','','index.php?ressource=join_family_member_lesson&edit=true&ID='.$next_id);
 $output->addtexte(ucfirst(LESSON_ADD_FAMILY_MEMBER), 'titre');
 
 $output->opentable($width = 670);
