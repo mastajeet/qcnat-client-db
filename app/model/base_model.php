@@ -316,8 +316,6 @@ class BaseModel
     }
 
 
-
-
     static function select($Req)
     {
         $SQL = new SQLHelper(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
