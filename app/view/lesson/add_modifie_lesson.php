@@ -14,7 +14,7 @@ foreach(LessonLevel::get_lession_level_list() as $key=>$value){
 
 $output = new HTMLHelper();
 
-$output->addform(ADD_MODIFY_FAMILY);
+$output->addform(ADD_MODIFY_LESSON);
 
 $output->inputhidden_env('ressource','lesson');
 $output->inputhidden('lesson_id',$lesson->lesson_id);
