@@ -16,7 +16,7 @@ include_once('route_description.php');
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <table width="1400">
     <tr>
-        <td width="250" valign="top"><?php include('menu.php'); ?></td>
+        <td width="250" valign="top"><?php include('menu.php'); ?><br><?php include('confirmation.php') ?></td>
         <td width="1150" valign="top"><?php include('route.php'); ?> </td>
     </tr>
 </table>

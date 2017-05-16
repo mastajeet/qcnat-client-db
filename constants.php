@@ -81,11 +81,13 @@ const INSTRUCTOR = 'moniteur';
 const DAY = 'jour';
 const TIME = 'heure';
 const LEVEL = 'niveau';
+const ADD_LESSON = 'ajouter lecon';
 
 
 ###### Form Actions
 
 const SELECT = "selectionnner";
+const CONFIRM = "confirmer";
 
 ###### Preinscription
 
