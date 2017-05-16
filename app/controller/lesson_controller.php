@@ -41,7 +41,7 @@ class LessonController extends base_controler
             $family_member->get_family();
             $family_member->get_previous_lessons();
         }
-        include_once("app/view/lesson/add_modifie_lesson_family_members.php");
+        include_once("app/view/join_family_member_lesson/add_modifie_lesson_family_members.php");
     }
 
 

@@ -95,19 +95,24 @@ class BaseModel
 
     function __construct($Arg = null)
     {
-        if (is_null($Arg)) {
-            $object = get_called_class();
-            foreach ($object::define_default_values() as $key => $value) {
-                $this->$key = $value;
-                $this->updated_values[] = $key;
-            }
+        $object = get_called_class();
+        $default_values =$object::define_default_values();
+
+        foreach ($default_values  as $key => $value) {
+            $this->$key = $value;
+            $this->updated_values[] = $key;
         }
 
-        if (is_array($Arg)) {
 
+
+
+        if (is_array($Arg)) {
             foreach ($Arg as $Key => $val) {
                 $this->$Key = $val;
-                $this->updated_values[] = $Key;
+                if(!in_array($Key,$this->updated_values))
+                {
+                    $this->updated_values[] = $Key;
+                }
             }
         }
 

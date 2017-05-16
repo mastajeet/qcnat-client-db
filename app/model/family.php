@@ -36,6 +36,14 @@ class Family extends BaseModel
         );
     }
 
+    static function define_default_values()
+    {
+        return [
+            'address'=>"",
+            'email'=>"",
+        ];
+    }
+
     static function define_table_info(){
         return array(
             'model_table' =>"family",

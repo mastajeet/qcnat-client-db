@@ -64,13 +64,13 @@ foreach($lessons as $day=>$times){
 
                     $output->opencol(125,1,'top','',"rowspan=".$nb_corridor);
 
-                $output->addpic('ressource/icon/add_ressource.png','','index.php?ressource=lesson&edit=true&ID='.$lessons[$level]->lesson_id);
-                $output->addpic('ressource/icon/edit_ressource.png','','index.php?ressource=lesson&edit=true');
+                $output->addpic('ressource/icon/add_ressource.png','','index.php?ressource=join_family_member_lesson&edit=true&ID='.$lessons[$level]->lesson_id);
+                $output->addpic('ressource/icon/edit_ressource.png','','index.php?ressource=lesson&edit=true&ID='.$lessons[$level]->lesson_id);
                 $output->addtexte($level,"Titre");
                 $output->br(2);
                 $nb_participant = 0;
                 foreach($lessons[$level]->family_members as $family_member){
-                    $output->addtexte($family_member->name." ".$family_member->lastname);
+                    $output->addtexte("- ".$family_member->name." ".$family_member->lastname);
                     $output->br();
                     $nb_participant++;
                 }

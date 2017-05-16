@@ -61,7 +61,7 @@ foreach($lessons as $day=>$times){
             $output->closecol();
 
             $output->opencol(425,5);
-            $output->addlink('?ressource=lesson&edit=true&ID='.$lesson->lesson_id,$lesson->level);
+            $output->addlink('?ressource=join_family_member_lesson&edit=true&ID='.$lesson->lesson_id,$lesson->level);
             $output->closecol();
 
 

@@ -78,4 +78,14 @@ class JoinFamilyMemberLessonController extends base_controler
         return $cahier;
     }
 
+    function edit_one($ID){
+        $lesson = new Lesson($ID);
+        $lesson->get_all_family_members();
+        foreach($lesson->family_members as $family_member){
+            $family_member->get_family();
+            $family_member->get_previous_lessons();
+        }
+        include_once("app/view/join_family_member_lesson/add_modifie_lesson_family_members.php");
+    }
+
 }

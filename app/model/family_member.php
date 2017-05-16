@@ -39,6 +39,15 @@ class FamilyMember extends BaseModel
             'role'=>'int');
     }
 
+    static function define_default_values()
+    {
+        $return_array =[
+            'date_of_birth'=>"1970-01-01 00:00:00",
+            'sex'=>'0',
+            'role'=>'0',
+        ];
+        return $return_array;
+    }
 
 
     static function define_table_info(){

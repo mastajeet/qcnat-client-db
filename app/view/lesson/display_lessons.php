@@ -16,7 +16,7 @@ $lesson_info = Lesson::define_table_info();
 
 $options = array();
 foreach ($lessons as $lesson) {
-    $option[$lesson->$lesson_info['model_table_id']] = $lesson->to_string();
+    $option[$lesson->{$lesson_info['model_table_id']}] = $lesson->to_string();
 }
 
 $output->inputselect('ID', $option,NULL,LESSON);
