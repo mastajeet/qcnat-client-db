@@ -65,6 +65,11 @@ $output->addtexte(" ");
 $output->closecol();
 
 
+$output->opencol(20);
+$output->addtexte(" ");
+$output->closecol();
+
+
 $output->opencol(150);
 $output->addtexte(ucfirst(FAMILY),'titre');
 $output->closecol();
