@@ -41,8 +41,8 @@ class FamilyController extends base_controler{
 
         generate_from_add_family_member_to_lesson($request_data);
         //logic for adding new nested family
-        $lesson_controller = new LessonController();
-        $lesson_controller->edit_one($request_data['lesson_id']);
+        $join_family_member_lesson_controller = new JoinFamilyMemberLessonController();
+        $join_family_member_lesson_controller->edit_one($request_data['lesson_id']);
 
     }
 }
