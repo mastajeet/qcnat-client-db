@@ -355,11 +355,15 @@ class HTMLHelper
 		{
 			foreach($option as $value => $option)
 			{
-				$text = "";
+				if($option==""){
+                    $option=$value;
+                }
+			    $text = "";
 				if($value==$selected)
 				{
 				$text = "SELECTED ";
 				}
+
 				$this->addoutput("<option value='".$value."' ".$text.">".$option."</option>");
 			}
 		}else{	

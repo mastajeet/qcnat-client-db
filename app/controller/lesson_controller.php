@@ -34,14 +34,32 @@ class LessonController extends base_controler
         include("app/view/lesson/display_lessons.php");
     }
 
+
+    function create_one($args)
+    {
+        $lesson = new Lesson();
+        include("app/view/lesson/add_modifie_lesson.php");
+    }
+
     function edit_one($ID){
         $lesson = new Lesson($ID);
-        $lesson->get_all_family_members();
-        foreach($lesson->family_members as $family_member){
-            $family_member->get_family();
-            $family_member->get_previous_lessons();
-        }
-        include_once("app/view/join_family_member_lesson/add_modifie_lesson_family_members.php");
+        include_once("app/view/lesson/add_modifie_lesson.php");
+    }
+
+    function post($request_data){
+        $lesson = new Lesson(prepare_post_request_data($request_data));
+        $ID = $lesson->save();
+        $join_family_member_lesson_controller = new JoinFamilyMemberLessonController();
+        $filter =
+            [
+                'filter'=>[
+                        'pool'=>$lesson->pool,
+                        'session'=>$lesson->session
+                ]
+
+            ];
+
+        $join_family_member_lesson_controller->obtain_carton($filter);
     }
 
 

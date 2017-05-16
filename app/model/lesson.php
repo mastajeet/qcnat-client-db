@@ -64,9 +64,14 @@ class Lesson extends BaseModel
         return ($ret);
     }
 
-    static function get_all_pools($session)
+    static function get_all_pools($session="")
     {
-        $req = "SELECT distinct(pool) FROM lesson WHERE session='" . $session . "' ORDER BY pool DESC";
+        if($session!=""){
+            $req = "SELECT distinct(pool) FROM lesson WHERE session='" . $session . "' ORDER BY pool DESC";
+        }else{
+            $req = "SELECT distinct(pool) FROM lesson WHERE 1";
+        }
+
         $ret = [];
         foreach (self::select($req) as $elem) {
             $ret[$elem['pool']] = null;
@@ -74,10 +79,15 @@ class Lesson extends BaseModel
         return ($ret);
     }
 
-    static function get_all_days($session, $pool)
+    static function get_all_days($session="", $pool="")
     {
         $table_info = self::define_table_info();
-        $req = "SELECT distinct(day) FROM lesson WHERE session='" . $session . "' and pool='" . $pool . "' ORDER BY " . $table_info['model_table_id'] . " DESC";
+        if($session!="" and $pool!=""){
+            $req = "SELECT distinct(day) FROM lesson WHERE session='" . $session . "' and pool='" . $pool . "' ORDER BY " . $table_info['model_table_id'] . " DESC";
+        }else{
+            $req = "SELECT distinct(day) FROM lesson WHERE 1";
+        }
+
         $ret = [];
         foreach (self::select($req) as $elem) {
             $ret[$elem['day']] = null;

@@ -67,6 +67,7 @@ const SELECT_LESSON = "Selectionnez une lecon";
 const PREFIX = "Prefixe";
 const ADD_JOIN_FAMILY_MEMBER_LESSON = "ajouter un cours suivi";
 const JOIN_FAMILY_MEMBER_LESSON = "cours suivi";
+const ADD_MODIFY_LESSON = "Ajouter / Modifier un cours";
 const LESSON_POOL = "piscine";
 const LESSON_LEVEL = "niveau";
 const LESSON_SESSION = "session";
@@ -74,6 +75,12 @@ const LESSON_ADD_FAMILY_MEMBER= "ajouter des élèves à un cours";
 const LESSON_DAY= "jour";
 const LESSON_TIME= "heure";
 const LESSON_INSTRUCTOR = "instructeur";
+const POOL = 'piscine';
+const SESSION = 'session';
+const INSTRUCTOR = 'moniteur';
+const DAY = 'jour';
+const TIME = 'heure';
+const LEVEL = 'niveau';
 
 
 ###### Form Actions

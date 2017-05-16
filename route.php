@@ -28,6 +28,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 break;
             }
 
+            CASE 'lesson': {
+                $controller = new LessonController();
+                break;
+            }
+
+
         }
 
         if(isset($controller)){
