@@ -337,7 +337,66 @@ class HTMLHelper
 		$this->closecol();
 		$this->closerow();
 	}
-	
+
+	function inputselectmultiple($name, $option, $selected=NULL, $description=NULL){
+        if($description==NULL)
+        {
+            $description=$name;
+        }
+        $this->openrow();
+        $this->opencol();
+        $this->addtexte(ucfirst($description),"titre");
+        $this->closecol();
+        $this->opencol();
+        $this->addoutput("<select name=\"".$this->formname.$name."\" class=inputselect class=inputselect MULTIPLE size=10>");
+        $this->genereate_select_items($option, $selected);
+        $this->closecol();
+        $this->closerow();
+	}
+
+	private function genereate_select_items($option, $selected=NULL){
+
+
+
+
+        if(is_array($option))
+        {
+            foreach($option as $value => $option)
+            {
+                if($option==""){
+                    $option=$value;
+                }
+                $text = "";
+                if(is_array($selected)){
+                    if(in_array($option,$selected)){
+                        $text = "SELECTED ";
+                    }
+                }elseif($value==$selected)
+                {
+                    $text = "SELECTED ";
+                }
+
+                $this->addoutput("<option value='".$value."' ".$text.">".$option."</option>");
+            }
+        }else{
+            $SQL = new SQLHelper();
+            $SQL->Select($option);
+            while($rep = $SQL->fetcharray())
+            {
+                $text = "";
+                if($rep[0]==$selected){
+                    $text = "SELECTED ";
+                }
+                $this->addoutput("<option value='".$rep[0]."' ".$text.">".$rep[1]);
+                if(isset($rep[2]))
+                    $this->addoutput(" ".$rep[2]);
+                $this->addoutput("</option>");
+            }
+
+        }
+        $this->addoutput("</select>");
+    }
+
 	function inputselect($name, $option, $selected=NULL, $description=NULL)	{
 		if($description==NULL)
 		{
@@ -348,41 +407,9 @@ class HTMLHelper
 		$this->addtexte(ucfirst($description),"titre");
 		$this->closecol();
 		$this->opencol();
-		$this->addoutput("<select name=\"".$this->formname.$name."\" class=inputselect class=inputselect>");
-		$this->addoutput("<option value=' '> </option>");
-		
-		if(is_array($option))
-		{
-			foreach($option as $value => $option)
-			{
-				if($option==""){
-                    $option=$value;
-                }
-			    $text = "";
-				if($value==$selected)
-				{
-				$text = "SELECTED ";
-				}
-
-				$this->addoutput("<option value='".$value."' ".$text.">".$option."</option>");
-			}
-		}else{	
-			$SQL = new SQLHelper();
-			$SQL->Select($option);
-			while($rep = $SQL->fetcharray())
-			{
-				$text = "";
-				if($rep[0]==$selected){
-				$text = "SELECTED ";
-				}
-				$this->addoutput("<option value='".$rep[0]."' ".$text.">".$rep[1]);
-				if(isset($rep[2]))
-					$this->addoutput(" ".$rep[2]);
-				$this->addoutput("</option>");
-			}
-
-		}
-		$this->addoutput("</select>");
+            $this->addoutput("<select name=\"".$this->formname.$name."\" class=inputselect class=inputselect>");
+        $this->addoutput("<option value=' '> </option>");
+            $this->genereate_select_items($option, $selected);
 		$this->closecol();
 		$this->closerow();
 	}

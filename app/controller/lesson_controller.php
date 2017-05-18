@@ -62,15 +62,18 @@ class LessonController extends base_controler
     }
 
     function search($request_data){
+
         include_once('app/controller/join_family_member_lesson_controller.php');
         $filters = $request_data['filter'];
-        $search_criteria = new Lesson($filters);
+        $search_criteria['session'] = $filters['session'];
+        $search_criteria['pool'] = $filters['pool'];
+        $search_criteria['level'] = $filters['level'];
 
 
         include("app/view/lesson/search_form.php");
 
 
-        if(isset($filters) and count(array_count_values($filters))>2){
+        if(isset($filters) and count($filters)>1){
             $lessons = JoinFamilyMemberLessonController::generate_cahier($filters['session'],$filters['pool'],$filters['level']);
             include("app/view/join_family_member_lesson/display_cahier.php");
         }

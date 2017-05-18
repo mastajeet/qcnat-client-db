@@ -103,7 +103,15 @@ class Lesson extends BaseModel
 
             $session_filter = !is_empty_string($session)  ? " and session='".$session."'" : "";
             $pool_filter = !is_empty_string($pool)  ? " and pool='".$pool."'" : "";
-            $level_filter = !is_empty_string($level)  ? " and level='".$level."'" : "";
+
+            if(is_array($level)){
+                $level_filter = " and ".convert_array_into_or_clause('level',$level);
+            }elseif(is_empty_string($level)){
+                $level_filter = "";
+            }else{
+                $level_filter = " and level='".$level."'";
+            }
+
 
             $req = "SELECT " . $table_info['model_table_id'] . " FROM lesson WHERE 1 ".$session_filter.$pool_filter.$level_filter."  ORDER BY pool ASC, time ASC";
 
