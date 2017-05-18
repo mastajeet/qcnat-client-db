@@ -5,7 +5,6 @@
  * Date: 2016-08-16
  * Time: 9:26 PM
  */
-//print_r($_REQUEST);
 
 
 if($_SERVER['REQUEST_METHOD']=='POST'){

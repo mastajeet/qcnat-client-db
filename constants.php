@@ -48,6 +48,7 @@ const DATE_FORMAT = "d F Y";
 const WARNING_UNKNOWN_MODEL_VALUE = 'Warning - unknown model value';
 const EXCEPTION_TOO_MANY_FAMILIES_FOUND = "Plusieurs familles ont ete trouvees pour ce numero de telephone";
 const EXCEPTION_CANNOT_SPLIT_LESSON_BY_TIME = "La fonctionnalite de specifier une heure pour les lecon n'est pas implementee";
+const EXCEPTION_CANNON_PARSE_ARGS = "la variable passee en argument n'est pas une valeur ou un tableau";
 const NO_ROUTE = 'No route for';
 
 
@@ -82,12 +83,14 @@ const DAY = 'jour';
 const TIME = 'heure';
 const LEVEL = 'niveau';
 const ADD_LESSON = 'ajouter lecon';
+const SEARCH_LESSON ='chercher lecon';
 
 
 ###### Form Actions
 
 const SELECT = "selectionnner";
 const CONFIRM = "confirmer";
+const SEARCH = "chercher";
 
 ###### Preinscription
 

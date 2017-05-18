@@ -9,14 +9,25 @@
 $output = new HTMLHelper();
 $output->opentable(600);
 
-$output->openrow();
-$output->opencol('600',6);
+$old_pool = "";
+$old_session = "";
+foreach($lessons as $day=>$times) {
+    $time_key = key($times);
+    $level_key = key($times[$time_key]);
 
-    $output->addtexte($session." - ".$pool);
-$output->closecol();
-$output->closerow();
 
-foreach($lessons as $day=>$times){
+    if ($old_pool != $times[$time_key][$level_key]->pool or $old_session != $times[$time_key][$level_key]->session){
+        $old_pool = $times[$time_key][$level_key]->pool;
+        $old_session = $times[$time_key][$level_key]->session;
+
+        $output->openrow();
+        $output->opencol('600', 6);
+
+        $output->addtexte($old_session . " - " . $old_pool);
+        $output->closecol();
+        $output->closerow();
+    }
+
     $output->openrow();
     $output->opencol(25,1);
         $output->addtexte(" ");

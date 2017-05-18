@@ -28,5 +28,12 @@ class TestArgsParserLambda extends PHPUnit_Framework_TestCase
         $this->assertEquals($lambda_to_test('ID'),"&ID[a]=1&ID[b]=2");
     }
 
+    function test_creating_null_values_args(){
+        $args = null;
+        $lambda_to_test = args_parser_lambda($args);
+        $this->assertNull($lambda_to_test('ID'));
+    }
+
+
 
 }

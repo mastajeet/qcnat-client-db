@@ -34,7 +34,6 @@ class LessonController extends base_controler
         include("app/view/lesson/display_lessons.php");
     }
 
-
     function create_one($args)
     {
         $lesson = new Lesson();
@@ -62,5 +61,19 @@ class LessonController extends base_controler
         $join_family_member_lesson_controller->obtain_carton($filter);
     }
 
+    function search($request_data){
+        include_once('app/controller/join_family_member_lesson_controller.php');
+        $filters = $request_data['filter'];
+        $search_criteria = new Lesson($filters);
+
+
+        include("app/view/lesson/search_form.php");
+
+
+        if(isset($filters) and count(array_count_values($filters))>2){
+            $lessons = JoinFamilyMemberLessonController::generate_cahier($filters['session'],$filters['pool'],$filters['level']);
+            include("app/view/join_family_member_lesson/display_cahier.php");
+        }
+    }
 
 }

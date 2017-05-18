@@ -20,21 +20,23 @@ class JoinFamilyMemberLessonController extends base_controler
     function obtain_cahier($filter){
         $pool = $filter['filter']['pool'];
         $session = $filter['filter']['session'];
-        $lessons = $this->generate_cahier($session,$pool);
+        $level = $filter['filter']['level'];
+        $lessons = $this->generate_cahier($session,$pool,$level);
         include_once("app/view/join_family_member_lesson/display_cahier.php");
     }
 
     function obtain_carton($filter){
         $pool = $filter['filter']['pool'];
         $session = $filter['filter']['session'];
-        $lessons = $this->generate_cahier($session,$pool);
+        $level = $filter['filter']['level'];
+        $lessons = $this->generate_cahier($session,$pool,$level);
         include_once("app/view/join_family_member_lesson/display_carton.php");
 
     }
 
 
-    private function generate_cahier($session,$pool){
-        $unordered_lessons = Lesson::get_all_lessons($session,$pool);
+    static function generate_cahier($session,$pool,$level){
+        $unordered_lessons = Lesson::get_all_lessons($session,$pool,$level);
         $lessons = [];
         foreach($unordered_lessons as $lesson){
             $lesson->get_all_family_members();

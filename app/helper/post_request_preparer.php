@@ -81,9 +81,24 @@ function args_parser_lambda($args){
 
 
 
+    }elseif(is_null($args)){
+        $return_function = function($variable_name) use ($args){
+            return null;
+        };
     }else{
         throw new NotImplementedException(EXCEPTION_CANNON_PARSE_ARGS);
     }
 
     return $return_function;
+}
+
+function is_empty_string($str){
+    if($str=="")
+        return true;
+    if($str==" ")
+        return true;
+    if(is_null($str))
+        return true;
+
+    return false;
 }

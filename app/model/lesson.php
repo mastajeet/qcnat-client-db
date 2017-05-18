@@ -96,11 +96,17 @@ class Lesson extends BaseModel
         return ($ret);
     }
 
-    static function get_all_lessons($session, $pool, $day = Null, $time = Null)
+    static function get_all_lessons($session=Null, $pool=Null, $level=Null, $day = Null, $time = Null)
     {
         $table_info = self::define_table_info();
         if (is_null($time) and is_null($day)) {
-            $req = "SELECT " . $table_info['model_table_id'] . " FROM lesson WHERE session='" . $session . "' and pool='" . $pool . "' ORDER BY time ASC";
+
+            $session_filter = !is_empty_string($session)  ? " and session='".$session."'" : "";
+            $pool_filter = !is_empty_string($pool)  ? " and pool='".$pool."'" : "";
+            $level_filter = !is_empty_string($level)  ? " and level='".$level."'" : "";
+
+            $req = "SELECT " . $table_info['model_table_id'] . " FROM lesson WHERE 1 ".$session_filter.$pool_filter.$level_filter."  ORDER BY pool ASC, time ASC";
+
             $lessons= [];
             foreach(self::select($req) as $lesson){
                 $lessons[$lesson[$table_info['model_table_id']]] = New Lesson($lesson[$table_info['model_table_id']]);
@@ -152,7 +158,6 @@ class Lesson extends BaseModel
 
         $this->inscriptions = $join_family_member_lesson;
     }
-
 
     public function to_string()
     {

@@ -8,25 +8,27 @@
 
 function get_route($name,$args=null){
 
+    $lambda_args_function = args_parser_lambda($args);
+
     switch ($name){
 
         CASE "add_family":
             return 'index.php?ressource=family&add=true';
 
         CASE "edit_family":
-            return 'index.php?ressource=family&ID='.$args.'&edit=true';
+            return 'index.php?ressource=family'.$lambda_args_function('ID').'&edit=true';
 
         CASE "display_family":
-            return 'index.php?ressource=family&ID='.$args;
+            return 'index.php?ressource=family'.$lambda_args_function('ID');
 
         CASE "display_families":
             return 'index.php?ressource=family&order_by=name&order=ASC';
 
         CASE "edit_family_member":
-            return 'index.php?ressource=family_member&ID='.$args.'&edit=true';
+            return 'index.php?ressource=family_member'.$lambda_args_function('ID').'edit=true';
 
         CASE "delete_family_member":
-            return 'index.php?ressource=family_member&ID='.$args.'&delete=true';
+            return 'index.php?ressource=family_member'.$lambda_args_function('ID').'&delete=true';
 
         CASE "add_family_member":
             return 'index.php?ressource=family_member&add=true';
@@ -46,8 +48,11 @@ function get_route($name,$args=null){
         CASE "add_lesson":
             return 'index.php?ressource=lesson&add=True';
 
+        CASE "search_lesson":
+            return 'index.php?ressource=lesson&action=search'.$lambda_args_function('filter').'';
+
         CASE "delete_join_family_member":
-            return 'index.php?ressource=join_family_member_lesson&delete=True&ID='.$args.'&ToConfirm=True';
+            return 'index.php?ressource=join_family_member_lesson&delete=True'.$lambda_args_function('ID').'&ToConfirm=True';
 
 
     }
