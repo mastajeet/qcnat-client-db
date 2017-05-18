@@ -58,3 +58,32 @@ function convert_date_from_post_data($date_post_data_array){
 function convert_phone_from_post_data($phone_post_data_array){
     return $phone_post_data_array[1].$phone_post_data_array[2].$phone_post_data_array[3];
 }
+
+function args_parser_lambda($args){
+    if(is_numeric($args)){
+
+        $return_function = function($variable_name) use ($args) {
+                return "&".$variable_name.'='.$args;
+        };
+
+
+    }elseif(is_array($args)){
+
+
+        $return_function = function($variable_name) use ($args) {
+            $str_total = "";
+            foreach($args as $key=>$value){
+                $str_total .= "&".$variable_name."[".$key."]=".$value;
+
+            }
+            return $str_total;
+        };
+
+
+
+    }else{
+        throw new NotImplementedException(EXCEPTION_CANNON_PARSE_ARGS);
+    }
+
+    return $return_function;
+}
