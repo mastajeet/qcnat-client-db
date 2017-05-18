@@ -66,9 +66,7 @@ function args_parser_lambda($args){
                 return "&".$variable_name.'='.$args;
         };
 
-
     }elseif(is_array($args)){
-
 
         $return_function = function($variable_name) use ($args) {
             $str_total = "";
@@ -79,8 +77,6 @@ function args_parser_lambda($args){
             return $str_total;
         };
 
-
-
     }elseif(is_null($args)){
         $return_function = function($variable_name) use ($args){
             return null;
@@ -88,6 +84,7 @@ function args_parser_lambda($args){
     }else{
         throw new NotImplementedException(EXCEPTION_CANNON_PARSE_ARGS);
     }
+
 
     return $return_function;
 }
@@ -101,4 +98,19 @@ function is_empty_string($str){
         return true;
 
     return false;
+}
+
+function convert_array_into_or_clause($field,$array){
+    $str_total = "(";
+    if(count($array)==0){
+        $str_total .= "1";
+    }else{
+        foreach($array as $key=>$value){
+            $str_total .= $field."='".$value."' OR ";
+        }
+        $str_total = substr($str_total,0,-4 );
+    }
+
+    $str_total .= ")";
+    return $str_total;
 }
