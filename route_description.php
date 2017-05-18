@@ -25,7 +25,7 @@ function get_route($name,$args=null){
             return 'index.php?ressource=family&order_by=name&order=ASC';
 
         CASE "edit_family_member":
-            return 'index.php?ressource=family_member'.$lambda_args_function('ID').'edit=true';
+            return 'index.php?ressource=family_member'.$lambda_args_function('ID').'&edit=true';
 
         CASE "delete_family_member":
             return 'index.php?ressource=family_member'.$lambda_args_function('ID').'&delete=true';
