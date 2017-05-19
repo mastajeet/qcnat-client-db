@@ -16,6 +16,7 @@
             str = '(<?php print(DEFAULT_REGIONAL_CODE) ?>) '+str.slice(0,3) +'-'+ str.slice(3,7) ;
         }
 
+        document.getElementById("family_tel_1").value = str;
 
 
     }
