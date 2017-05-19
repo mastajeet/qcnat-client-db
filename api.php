@@ -13,7 +13,12 @@ switch ($_GET['ressource']){
         $family_tel_1 = str_replace(["(",")","-"," "],"", $_GET['tel1']);
         $retrived_family_member = Family::find_by("tel_1",$family_tel_1);
         if($retrived_family_member==[]){
-            print_r([]);
+            $retrived_family_member = Family::find_by("tel_2",$family_tel_1);
+            if($retrived_family_member==[]){
+                print_r([]);
+            }else{
+                print_r($retrived_family_member[0]->to_json());
+            }
         }else{
             print_r($retrived_family_member[0]->to_json());
         }
