@@ -78,9 +78,16 @@ foreach($lessons as $day=>$times) {
 
 
             $family_member_index = 1;
-            foreach($lesson->family_members as $family_member){
+            $lesson->get_all_inscriptions();
+            foreach($lesson->inscriptions as $inscription){
+                $inscription->family_member->get_family();
 
-                $output->openrow();
+                $inscription->get_payment_status()==PaymentStatus::NOT_RECIEVED ? $payment_status_style = "warning":"";
+                $inscription->get_payment_status()==PaymentStatus::RECIVED ? $payment_status_style = "no_warning":"";
+                $inscription->get_payment_status()==PaymentStatus::VALIDATED ? $payment_status_style = "clear":"";
+
+
+                    $output->openrow();
                 $output->opencol(25,1);
                 $output->addtexte(" ");
                 $output->closecol();
@@ -90,14 +97,14 @@ foreach($lessons as $day=>$times) {
                 $output->closecol();
 
                 $output->opencol(25,1);
-                $output->addtexte(" ");
+                $output->addlink(get_route('obtain_inscription_payment',$inscription->join_family_member_lesson_id),'$',"",$payment_status_style);
                 $output->closecol();
 
                 $output->opencol(25,1);
 
                 $prefix = " ";
-                if ($family_member->lesson_info['prefix']!=""){
-                    $prefix = "(".$family_member->lesson_info['prefix'].")";
+                if ($inscription->prefix!=""){
+                    $prefix = "(".$inscription->prefix.")";
                 }
                 $output->addtexte($prefix);
                 $output->closecol();
@@ -107,15 +114,15 @@ foreach($lessons as $day=>$times) {
                 $output->closecol();
 
                 $output->opencol(200,1);
-                $output->addtexte($family_member->name." ".$family_member->lastname);
+                $output->addtexte($inscription->family_member->name." ".$family_member->lastname);
                 $output->closecol();
 
                 $output->opencol(25,1);
-                $output->addtexte($family_member->age());
+                $output->addtexte($inscription->family_member->age());
                 $output->closecol();
 
                 $output->opencol(175,1);
-                $output->addphone($family_member->family->tel_1,1);
+                $output->addphone($inscription->family_member->family->tel_1,1);
                 $output->closecol();
 
                 $output->closerow();

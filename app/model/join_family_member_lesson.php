@@ -63,4 +63,20 @@ class JoinFamilyMemberLesson extends BaseModel
         $this->payment = $payment;
     }
 
+
+    public function get_payment_status(){
+        if(is_null($this->payment)){
+            $this->get_payment();
+        }
+
+        if($this->payment==[]){
+            return PaymentStatus::NOT_RECIEVED;
+        }elseif(!$this->payment->validated){
+            return PaymentStatus::RECIVED;
+        }else{
+            return PaymentStatus::VALIDATED;
+        }
+    }
+
+
 }
