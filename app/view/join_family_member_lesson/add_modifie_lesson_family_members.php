@@ -142,10 +142,10 @@ foreach ($lesson->inscriptions as $inscription) {
 
 
 
-    foreach($family_member->previous_lessons as $lesson){
-        if($lesson->lesson_id == $lesson->lesson_id){
+    foreach($family_member->previous_lessons as $previous_lesson){
+        if($previous_lesson->lesson_id == $lesson->lesson_id){
             $output->opencol();
-            $output->addtexte($lesson->prefix);
+            $output->addtexte($previous_lesson->prefix);
             $output->closecol();
 
         }
