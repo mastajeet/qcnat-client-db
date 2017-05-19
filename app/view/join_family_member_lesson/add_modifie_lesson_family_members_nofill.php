@@ -1,6 +1,10 @@
 <script>
+    function myBlurFunction() {
+        var x = document.getElementById("family_name");
+        document.getElementById("family_member_lastname").value = x.value;
+    }
 
-    function clean_phone_number() {
+    function correct_phone_input() {
 
         var x = document.getElementById("family_tel_1");
 
@@ -16,14 +20,9 @@
             str = '(<?php print(DEFAULT_REGIONAL_CODE) ?>) '+str.slice(0,3) +'-'+ str.slice(3,7) ;
         }
 
-
-
-    }
-
-    function format_phone_number(){
         if(str.length==10){
 
-            str = '('+str.slice(0,3)+') '+ str.slice(3,6)+'-'+ str.slice(6,10) ;
+           str = '('+str.slice(0,3)+') '+ str.slice(3,6)+'-'+ str.slice(6,10) ;
         }
 
         document.getElementById("family_tel_1").value = str;
@@ -32,13 +31,7 @@
 
 
 </script>
-<style>
-    .ui-helper-hidden-accessible { display:none; }
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="./ressource/js/autofill_family_member.js"></script>
+
 
 <?php
 /**
@@ -86,17 +79,17 @@ $output->closecol();
 
 
 $output->opencol(150);
-$output->addtexte(ucfirst(TELEPHONE),'titre');
-$output->closecol();
-
-
-$output->opencol(150);
 $output->addtexte(ucfirst(FAMILY),'titre');
 $output->closecol();
 
 
 $output->opencol(150);
 $output->addtexte(ucfirst(FIRSTNAME),'titre');
+$output->closecol();
+
+
+$output->opencol(150);
+$output->addtexte(ucfirst(TELEPHONE),'titre');
 $output->closecol();
 
 $output->opencol(150);
@@ -125,11 +118,6 @@ foreach ($lesson->inscriptions as $inscription) {
     $output->closecol();
 
     $output->opencol();
-    $output->addphone($family_member->family->tel_1);
-    $output->closecol();
-
-
-    $output->opencol();
     $output->addtexte($family_member->family->name);
     $output->closecol();
 
@@ -139,6 +127,9 @@ foreach ($lesson->inscriptions as $inscription) {
     $output->closecol();
 
 
+    $output->opencol();
+    $output->addphone($family_member->family->tel_1);
+    $output->closecol();
 
 
     foreach($family_member->previous_lessons as $lesson){
@@ -177,17 +168,16 @@ $output->closecol();
 
 
 $output->opencol();
-$output->addoutput("<input text name=FORM_Family_tel_1 id='family_tel_1'");
-$output->closecol();
-
-
-$output->opencol();
 $output->addoutput("<input text name=FORM_Family_name id='family_name'>");
 $output->closecol();
 
 
 $output->opencol();
-$output->addoutput("<input text name=FORM_Family_member_name id='name'>");
+$output->addoutput("<input text name=FORM_Family_member_name>");
+$output->closecol();
+
+$output->opencol();
+$output->addoutput("<input text name=FORM_Family_tel_1 id='family_tel_1' onblur=correct_phone_input()>");
 $output->closecol();
 
 

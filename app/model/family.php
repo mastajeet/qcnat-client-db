@@ -61,6 +61,21 @@ class Family extends BaseModel
         }
     }
 
+    function to_json(){
+        $this->get_family_members();
+
+        $family_members = "[";
+        foreach($this->family_members as $family_member){
+            $family_members .= "\"".$family_member->name."\", ";
+
+        }
+        $family_members = substr($family_members ,0,-2);
+        $family_members .= "]";
+        return "{\"name\" : \"".$this->name."\", \"family_members\":".$family_members."}";
+
+
+        }
+
 
 
 }

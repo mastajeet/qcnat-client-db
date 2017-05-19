@@ -356,9 +356,6 @@ class HTMLHelper
 
 	private function genereate_select_items($option, $selected=NULL){
 
-
-
-
         if(is_array($option))
         {
             foreach($option as $value => $option)
