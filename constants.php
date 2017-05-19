@@ -99,3 +99,8 @@ const INSCRIPTION = "Inscription";
 ###### Payments
 
 const MISSING_ID = "Il manque un parametre ID dans la query string";
+const ADD_MODIFY_PAYMENT = "ajouter / modifier un paiement";
+const PAYMENT_AMOUNT = "montant";
+const PAYMENT_SOURCE = "source";
+const PAYER = "Payeur";
+const VALIDATED = "Valide";

@@ -31,7 +31,6 @@ abstract class BasicEnum {
             }
     }
 
-
     public static function is_valid_name($name, $strict = false) {
         $constants = self::get_constants();
 
@@ -47,4 +46,5 @@ abstract class BasicEnum {
         $values = array_values(self::get_constants());
         return in_array($value, $values, $strict);
     }
+
 }

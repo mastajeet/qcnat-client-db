@@ -19,6 +19,8 @@ class Family extends BaseModel
     public $email;
     public $created_at;
     public $deleted_at;
+
+    public $inscriptions = null;
     protected $family_members = null;
 
     static function define_data_types()
@@ -59,6 +61,21 @@ class Family extends BaseModel
         foreach($result as $family_member){
             $this->family_members[] = $family_member;
         }
+    }
+
+    function get_inscriptions_session($session){
+        $inscriptions = [];
+        if(is_null($this->family_members))
+            $this->get_family_members();
+        foreach($this->family_members as $family_member){
+            $family_member->get_previous_lessons();
+            foreach($family_member->previous_lessons as $lesson){
+                if($lesson->session == $session){
+                    $inscriptions[] = $lesson->level;
+                }
+            }
+        }
+        $this->inscriptions = $inscriptions;
     }
 
     function to_json(){

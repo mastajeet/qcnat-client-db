@@ -6,7 +6,7 @@
  * Date: 19/05/17
  * Time: 2:13 PM
  */
-class payment extends BaseModel
+class Payment extends BaseModel
 {
 
     public $payment_id;

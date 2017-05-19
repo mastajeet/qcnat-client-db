@@ -342,7 +342,7 @@ class BaseModel
         }
 
         if ($data_type == "bool") {
-            return boolval($data);
+            return intval($data);
         }
 
         if ($data_type == "float") {

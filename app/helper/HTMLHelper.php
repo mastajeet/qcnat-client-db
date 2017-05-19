@@ -441,6 +441,7 @@ class HTMLHelper
 		$this->addtexte(ucfirst($description),"titre");
 		$this->closecol();
 		$this->opencol();
+        $this->addoutput("<input name=\"".$this->formname.$name."\"  type=hidden value=0 >");
 		$this->addoutput("<input name=\"".$this->formname.$name."\" type=checkbox value=1 $checked>");
 		$this->closecol();
 		$this->closerow();

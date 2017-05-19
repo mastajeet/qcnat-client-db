@@ -7,7 +7,6 @@
  */
 
 
-
 class Sex extends BasicEnum{
     const MEN = 1;
     const WOMEN = 2;
@@ -31,4 +30,19 @@ class Month extends BasicEnum{
     const OCTOBER = 10;
     const NOVEMBER = 11;
     const DECEMBER = 12;
+}
+
+class PaymentStatus extends BasicEnum{
+    const NOT_RECIEVED = 0;
+    const RECIVED = 1;
+    const VALIDATED = 2;
+}
+
+class PaymentSource extends BasicEnum{
+    const CHEQUE = 0;
+    const ARGENT = 0;
+    const B = 0;
+    const CR = 0;
+    const AG = 0;
+    const SF = 0;
 }
