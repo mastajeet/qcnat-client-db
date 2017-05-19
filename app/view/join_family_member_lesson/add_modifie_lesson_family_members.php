@@ -56,7 +56,7 @@ $current_pool = $lesson->pool;
 
 $uri_filter = "&filter[pool]=".$current_pool."&filter[session]=$current_session ";
 
-$output->addpic('ressource/icon/home.png','','index.php?ressource=join_family_member_lesson&action=obtain_cahier'.$uri_filter .'&ID='.$lesson_id);
+$output->addpic('ressource/icon/home.png','','index.php?ressource=join_family_member_lesson&action=obtain_cahier'.$uri_filter .'&ID='.$lesson_id.'#'.$lesson->lesson_id);
 $output->addpic('ressource/icon/refresh.png','','index.php?ressource=join_family_member_lesson&edit=true&ID='.$lesson_id);
 $output->addpic('ressource/icon/next_ressource.png','','index.php?ressource=join_family_member_lesson&edit=true&ID='.$next_id);
 $output->addtexte(ucfirst(LESSON_ADD_FAMILY_MEMBER), 'titre');

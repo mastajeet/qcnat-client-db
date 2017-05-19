@@ -62,8 +62,8 @@ foreach($lessons as $day=>$times){
                     $nb_demi_corridor_place++;
                 }
 
-                    $output->opencol(125,1,'top','',"rowspan=".$nb_corridor);
-
+                $output->opencol(125,1,'top','',"rowspan=".$nb_corridor);
+                $output->addoutput("<a name=".$lessons[$level]->lesson_id."></a>");
                 $output->addpic('ressource/icon/add_ressource.png','','index.php?ressource=join_family_member_lesson&edit=true&ID='.$lessons[$level]->lesson_id);
                 $output->addpic('ressource/icon/edit_ressource.png','','index.php?ressource=lesson&edit=true&ID='.$lessons[$level]->lesson_id);
                 $output->addtexte($level,"Titre");
