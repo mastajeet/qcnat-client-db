@@ -32,6 +32,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 break;
             }
 
+            CASE 'payment': {
+                $controller = new PaymentController();
+                break;
+            }
+
 
         }
 
@@ -68,6 +73,11 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
           CASE 'join_family_member_lesson': {
               $controller = new JoinFamilyMemberLessonController();
+              break;
+          }
+
+          CASE 'payment': {
+              $controller = new PaymentController();
               break;
           }
       }

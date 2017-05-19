@@ -54,6 +54,9 @@ function get_route($name,$args=null){
         CASE "delete_join_family_member":
             return 'index.php?ressource=join_family_member_lesson&delete=True'.$lambda_args_function('ID').'&ToConfirm=True';
 
+        CASE "obtain_inscription_payment":
+            return 'index.php?ressource=payment&action=obtain_inscription_payment'.$lambda_args_function('ID');
+
 
     }
     throw new UnexpectedValueException(NO_ROUTE.": ".$name);

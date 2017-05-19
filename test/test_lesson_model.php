@@ -13,6 +13,7 @@ require_once('../app/model/join_family_member_lesson.php');
 require_once('../app/helper/MySQLHelper.php');
 require_once('../db_credentials.php');
 require_once('../constants.php');
+require_once('../app_include.php');
 require_once('test_data.php');
 
 class TestLessonModel extends PHPUnit_Framework_TestCase

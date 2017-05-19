@@ -95,3 +95,7 @@ const SEARCH = "chercher";
 ###### Preinscription
 
 const INSCRIPTION = "Inscription";
+
+###### Payments
+
+const MISSING_ID = "Il manque un parametre ID dans la query string";

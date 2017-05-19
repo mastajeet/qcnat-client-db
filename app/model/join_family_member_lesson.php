@@ -17,6 +17,10 @@ class JoinFamilyMemberLesson extends BaseModel
     public $lesson;
 
 
+    //status
+
+    public $payment;
+
     function __construct($Arg)
     {
         parent::__construct($Arg);
@@ -46,7 +50,17 @@ class JoinFamilyMemberLesson extends BaseModel
         $join->save();
 
         return $join;
+    }
 
+    public function get_payment(){
+
+        if(is_null($this->payment) or $this->payment==0){
+            $payment=[];
+        }else{
+            $payment = new Payment($this->payment_id);
+        }
+
+        $this->payment = $payment;
     }
 
 }
