@@ -22,7 +22,7 @@
                     });
                 }
             };
-            xhttp.open("GET", "http://localhost/qcnat-client-db/api.php?ressource=family&tel1="+tel.val(), true);
+            xhttp.open("GET", "./api.php?ressource=family&tel1="+tel.val(), true);
             xhttp.send();
             format_phone_number();
         });
