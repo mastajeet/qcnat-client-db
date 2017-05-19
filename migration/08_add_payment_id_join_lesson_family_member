@@ -1,0 +1,1 @@
+ALTER TABLE `join_family_member_lesson` ADD `payment_id` INT NOT NULL AFTER `prefix`;
