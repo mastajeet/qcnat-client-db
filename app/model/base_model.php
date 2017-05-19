@@ -340,10 +340,14 @@ class BaseModel
         if ($data_type == "int") {
             return intval($data);
         }
+
+        if ($data_type == "bool") {
+            return boolval($data);
+        }
+
         if ($data_type == "float") {
             return floatval($data);
         }
-
         if ($data_type == "date") {
             return "\"" . $data . "\"";
         }
