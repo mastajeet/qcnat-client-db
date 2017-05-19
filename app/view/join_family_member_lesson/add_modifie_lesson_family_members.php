@@ -21,12 +21,11 @@
     }
 
     function format_phone_number(){
+
         if(str.length==10){
-
-            str = '('+str.slice(0,3)+') '+ str.slice(3,6)+'-'+ str.slice(6,10) ;
+            var str = '('+str.slice(0,3)+') '+ str.slice(3,6)+'-'+ str.slice(6,10) ;
+            document.getElementById("family_tel_1").value = str;
         }
-
-        document.getElementById("family_tel_1").value = str;
 
     }
 
