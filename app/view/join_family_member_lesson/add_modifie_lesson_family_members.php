@@ -173,7 +173,7 @@ $output->closecol();
 
 
 $output->opencol();
-$output->addoutput($family_member_index);
+$output->addoutput("<div class=texte>".$family_member_index."</div>");
 $output->closecol();
 
 
