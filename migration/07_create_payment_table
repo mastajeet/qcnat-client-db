@@ -1,6 +1,8 @@
+
 CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
   `amount` float NOT NULL,
   `payer` varchar(255) NOT NULL,
-  `source` varchar(255) NOT NULL
+  `source` varchar(255) NOT NULL,
+  `validated` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

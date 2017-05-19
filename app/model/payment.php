@@ -21,6 +21,7 @@ class payment extends BaseModel
             'amount' => 'float',
             'payer' => 'string',
             'source' => 'string',
+            'validated'=>'bool',
         );
     }
 
