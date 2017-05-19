@@ -126,12 +126,14 @@ foreach ($lesson->inscriptions as $inscription) {
     $output->closecol();
 
     $output->opencol();
+    $output->addoutput("<a href=".get_route('display_family',$family_member->family->family_id)." target=_BLANK>");
     $output->addphone($family_member->family->tel_1);
+    $output->addoutput("</a>");
     $output->closecol();
 
 
     $output->opencol();
-    $output->addtexte($family_member->family->name);
+    $output->addtexte($family_member->lastname);
     $output->closecol();
 
 
