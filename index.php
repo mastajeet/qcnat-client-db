@@ -11,8 +11,11 @@ include_once('app_include.php');
 include_once('constants.php');
 include_once('route_description.php');
 
-
 ?>
+
+
+<link rel="STYLESHEET" type="text/css" href="./ressource/css/style.css">
+<link rel="STYLESHEET" type="text/css" href="./ressource/css/color_code.css">
 
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <table width="1400">

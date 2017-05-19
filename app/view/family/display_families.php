@@ -38,9 +38,11 @@ $output->addtexte(ucfirst(TELEPHONE)." - 2",$class='Titre');
 $output->closecol();
 $output->closerow();
 
+$row_style = "one";
+
 foreach($families as $family){
 
-    $output->openrow();
+    $output->openrow("",$row_style);
     $output->opencol($width=20);
         $output->addpic('ressource/icon/edit_ressource.png','',$link=get_route('edit_family',$family->family_id));
     $output->closecol();
@@ -66,6 +68,8 @@ foreach($families as $family){
     $output->addphone($family->tel_2,true);
     $output->closecol();
     $output->closerow();
+
+    $row_style = alternate_row_style($row_style);
 
 }
 
