@@ -6,7 +6,7 @@
  * Date: 2016-08-16
  * Time: 10:03 PM
  */
-class JoinFamilyMemberLessonController extends base_controler
+class JoinFamilyMemberLessonController extends BaseController
 {
 
     function post($request_data){

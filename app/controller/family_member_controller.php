@@ -6,7 +6,7 @@
  * Date: 2016-08-16
  * Time: 10:03 PM
  */
-class FamilyMemberController extends base_controler
+class FamilyMemberController extends BaseController
 {
 
     function create_one($args)

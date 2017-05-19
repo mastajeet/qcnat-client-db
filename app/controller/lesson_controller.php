@@ -6,7 +6,7 @@
  * Date: 2016-08-16
  * Time: 10:03 PM
  */
-class LessonController extends base_controler
+class LessonController extends BaseController
 {
 
     function sync_qndb(){

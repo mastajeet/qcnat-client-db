@@ -5,9 +5,9 @@
  * Date: 2016-08-16
  * Time: 9:36 PM
  */
-include_once("base_controler.php");
+include_once("BaseController.php");
 
-class FamilyController extends base_controler{
+class FamilyController extends BaseController{
 
     function get_list($filter, $order_by, $order,$nb_per_page, $page){
         $families = Family::get_all($filter, $order_by, $order,$nb_per_page, $page);

@@ -6,7 +6,7 @@
  * Date: 2016-08-16
  * Time: 9:39 PM
  */
-class base_controler
+class BaseController
 {
     protected $controlled_model;
 
