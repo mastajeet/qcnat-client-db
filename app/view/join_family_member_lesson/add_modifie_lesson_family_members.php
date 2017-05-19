@@ -21,7 +21,8 @@
     }
 
     function format_phone_number(){
-
+        var x = document.getElementById("family_tel_1");
+        var str = x.value;
         if(str.length==10){
             var str = '('+str.slice(0,3)+') '+ str.slice(3,6)+'-'+ str.slice(6,10) ;
             document.getElementById("family_tel_1").value = str;
