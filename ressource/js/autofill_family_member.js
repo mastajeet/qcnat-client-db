@@ -20,6 +20,7 @@
                             "ui-autocomplete": "highlight"
                         }
                     });
+                    $family_name.select();
                 }
             };
             xhttp.open("GET", "./api.php?ressource=family&tel1="+tel.val(), true);
