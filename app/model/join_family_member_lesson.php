@@ -15,7 +15,7 @@ class JoinFamilyMemberLesson extends BaseModel
     public $prefix;
     public $family_member;
     public $lesson;
-
+    public $payment_id;
 
     //status
 
@@ -52,10 +52,9 @@ class JoinFamilyMemberLesson extends BaseModel
         return $join;
     }
 
-    public function get_payment(){
-
-        if(is_null($this->payment) or $this->payment==0){
-            $payment=[];
+    private function obtain_payment(){
+        if($this->payment_id==0){
+            $payment= new payment();
         }else{
             $payment = new Payment($this->payment_id);
         }
@@ -63,13 +62,17 @@ class JoinFamilyMemberLesson extends BaseModel
         $this->payment = $payment;
     }
 
+    public function get_payment(){
+        $this->obtain_payment();
+        return $this->payment;
+    }
+
 
     public function get_payment_status(){
         if(is_null($this->payment)){
             $this->get_payment();
         }
-
-        if($this->payment==[]){
+        if($this->payment_id==0){
             return PaymentStatus::NOT_RECIEVED;
         }elseif(!$this->payment->validated){
             return PaymentStatus::RECIVED;

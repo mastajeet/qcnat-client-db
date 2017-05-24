@@ -23,6 +23,7 @@ class FamilyMember extends BaseModel
     protected $age;
     protected $last_lesson = null;
     protected $previous_lessons = null;
+    protected $previous_inscriptions = null;
 
 
     static function define_data_types()
@@ -92,6 +93,28 @@ class FamilyMember extends BaseModel
         $this->previous_lessons = $previous_lesson;
     }
 
+    private function obtain_previous_inscriptions(){
+        if($this->family_member_id<>""){
+            # sessions need to be sorted by timestamp....
+            $join_info = JoinFamilyMemberLesson::define_table_info();
+            $lesson_info = Lesson::define_table_info();
+            $family_member_info = self::define_table_info();
+            $req = "SELECT ".$join_info['model_table_id']." FROM ".$join_info['model_table']." WHERE ".$family_member_info['model_table_id']." = ".$this->family_member_id;
+            $rep = self::select($req);
+            $previous_inscriptions = array();
+            if($rep){
+                foreach($rep as $values){
+
+                    $current_inscription = new JoinFamilyMemberLesson($values[$join_info['model_table_id']]);
+                    $previous_inscriptions[] = $current_inscription;
+                }
+            }
+        }else{
+            $previous_inscriptions = [];
+        }
+        $this->previous_inscriptions = $previous_inscriptions;
+    }
+
     public function get_family(){
         if($this->family_id<>""){
             $this->family = new Family($this->family_id);
@@ -108,6 +131,12 @@ class FamilyMember extends BaseModel
         }
     }
 
+    public function get_previous_inscriptions(){
+        if(is_null($this->previous_inscriptions)){
+            $this->obtain_previous_inscriptions();
+        }
+        return $this->previous_inscriptions;
+    }
 
 
 }

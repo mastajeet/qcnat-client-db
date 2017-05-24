@@ -10,12 +10,13 @@ class PaymentController
 {
 
     public function obtain_inscription_payment($args){
-        if(isset($args['ID'])){
+        if(isset($args['ID'])) {
             $inscription = new JoinFamilyMemberLesson($args['ID']);
+
             $inscription->get_payment();
-            if($inscription->payment==[]){
+            if ($inscription->get_payment() == []) {
                 $payment = new Payment();
-            }else{
+            } else {
                 $payment = $inscription->payment;
             }
             $inscription->family_member->get_family();
@@ -34,17 +35,30 @@ class PaymentController
             'payer'=>$prepared_data['payer'],
             'amount'=>$prepared_data['amount'],
             'source'=>$prepared_data['source'],
-            'validated'=>$prepared_data['validated']
+            'validated'=>$prepared_data['validated'],
+            'payment_id'=>$prepared_data['payment_id'],
         ];
 
         $payment = new Payment($payment_data);
-
         $payment->save();
-//        foreach($prepared_data['inscription_id'] as $inscription ){
-//            $inscription = new JoinFamilyMemberLesson($inscription);
-//            $inscription->payment_id = $payment->payment_id;
-//            $inscription->save();
-//        }
+
+        if(!is_array($prepared_data['join_family_member_lesson_id'])){
+            $paid_inscriptions = [$prepared_data['join_family_member_lesson_id']];
+        }else{
+            $paid_inscriptions = $prepared_data['join_family_member_lesson_id'];
+        }
+
+        foreach($paid_inscriptions  as $inscription ){
+            $inscription = new JoinFamilyMemberLesson($inscription);
+            $inscription->payment_id = $payment->payment_id;
+            $inscription->save();
+        }
+
+        $join_family_member_lesson_controller = new JoinFamilyMemberLessonController();
+        $filters['filter']['pool'] = $inscription->lesson->pool;
+        $filters['filter']['session'] = $inscription->lesson->session;
+        $join_family_member_lesson_controller->obtain_cahier($filters);
+
 
     }
 

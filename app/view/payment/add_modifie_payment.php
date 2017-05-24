@@ -27,7 +27,7 @@ $output->inputtext('amount',PAYMENT_AMOUNT,10,$payment->amount);
 $output->inputselect('source',PaymentSource::get_constants(),$payment->source,PAYMENT_SOURCE);
 $output->flag('validated',$payment->validated,VALIDATED);
 
-$output->inputselectmultiple('join_family_member_lesson_id',$family->inscriptions,$inscription->join_family_member_lesson_id,INSCRIPTION);
+$output->inputselectmultiple('join_family_member_lesson_id[]',$family->inscriptions,$payment->get_paid_inscriptions(),INSCRIPTION);
 
 
 $output->formsubmit(ADD_MODIFY);

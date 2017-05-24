@@ -68,10 +68,11 @@ class Family extends BaseModel
         if(is_null($this->family_members))
             $this->get_family_members();
         foreach($this->family_members as $family_member){
-            $family_member->get_previous_lessons();
-            foreach($family_member->previous_lessons as $lesson){
-                if($lesson->session == $session){
-                    $inscriptions[] = $lesson->level;
+            $previous_inscriptions = $family_member->get_previous_inscriptions();
+
+            foreach($previous_inscriptions  as $current_inscription){
+                if($current_inscription->lesson->session == $session){
+                    $inscriptions[$current_inscription->join_family_member_lesson_id] = $current_inscription->family_member->name." (".$current_inscription->lesson->level.")";
                 }
             }
         }

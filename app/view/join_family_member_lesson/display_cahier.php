@@ -82,6 +82,7 @@ foreach($lessons as $day=>$times) {
             foreach($lesson->inscriptions as $inscription){
                 $inscription->family_member->get_family();
 
+
                 $inscription->get_payment_status()==PaymentStatus::NOT_RECIEVED ? $payment_status_style = "warning":"";
                 $inscription->get_payment_status()==PaymentStatus::RECIVED ? $payment_status_style = "no_warning":"";
                 $inscription->get_payment_status()==PaymentStatus::VALIDATED ? $payment_status_style = "clear":"";

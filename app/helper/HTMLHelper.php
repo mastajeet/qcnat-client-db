@@ -354,12 +354,13 @@ class HTMLHelper
         $this->closerow();
 	}
 
-	private function genereate_select_items($option, $selected=NULL){
+	private function genereate_select_items($options, $selected=NULL){
 
-        if(is_array($option))
+        if(is_array($options))
         {
-            foreach($option as $value => $option)
+            foreach($options as $value => $option)
             {
+
                 if($option==""){
                     $option=$value;
                 }
@@ -377,7 +378,7 @@ class HTMLHelper
             }
         }else{
             $SQL = new SQLHelper();
-            $SQL->Select($option);
+            $SQL->Select($options);
             while($rep = $SQL->fetcharray())
             {
                 $text = "";
