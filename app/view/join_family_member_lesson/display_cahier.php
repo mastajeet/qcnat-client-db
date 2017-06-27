@@ -115,7 +115,7 @@ foreach($lessons as $day=>$times) {
                 $output->closecol();
 
                 $output->opencol(200,1);
-                $output->addtexte($inscription->family_member->name." ".$family_member->lastname);
+                $output->addtexte($inscription->family_member->name." ".$inscription->family_member->lastname);
                 $output->closecol();
 
                 $output->opencol(25,1);
