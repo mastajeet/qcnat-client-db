@@ -115,7 +115,7 @@ foreach($lessons as $day=>$times) {
                 $output->closecol();
 
                 $output->opencol(200,1);
-                $output->addtexte($inscription->family_member->name." ".$inscription->family_member->lastname);
+                $output->addlink(get_route('edit_family_member',$inscription->family_member->family_member_id) , $inscription->family_member->name." ".$inscription->family_member->lastname,"_BLANK");
                 $output->closecol();
 
                 $output->opencol(25,1);
