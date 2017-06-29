@@ -50,18 +50,28 @@ class PaymentController
 
         $payments = [];
 
+        $last_lesson_id =0;
         foreach($paid_inscriptions  as $inscription ){
             $inscription = new JoinFamilyMemberLesson($inscription);
             $inscription->payment_id = $payment->payment_id;
             $inscription->save();
             $family_member = new FamilyMember($inscription->family_member_id);
             $payments[] = $family_member->lastname." ".$family_member->name;
-
+            $last_lesson_id = $inscription->lesson_id;
         }
         $payments['total'] = $payment->amount." $";
+        $current_pool = $inscription->lesson->pool;
+        $current_session = $inscription->lesson->session;
+
+        $uri_filter = "filter[pool]=".$current_pool."&filter[session]=".$current_session;
+        $payments[] = "<a href=\"index.php?ressource=join_family_member_lesson&action=obtain_cahier&".$uri_filter."#".$last_lesson_id."\">Retour au cours</a>";
+
+
         $join_family_member_lesson_controller = new JoinFamilyMemberLessonController();
         $filters['filter']['pool'] = $inscription->lesson->pool;
         $filters['filter']['session'] = $inscription->lesson->session;
+
+
         echo add_notification(PAYMENT_RECIEVED,$payments);
         $join_family_member_lesson_controller->obtain_cahier($filters);
 
