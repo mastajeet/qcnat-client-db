@@ -48,15 +48,21 @@ class PaymentController
             $paid_inscriptions = $prepared_data['join_family_member_lesson_id'];
         }
 
+        $payments = [];
+
         foreach($paid_inscriptions  as $inscription ){
             $inscription = new JoinFamilyMemberLesson($inscription);
             $inscription->payment_id = $payment->payment_id;
             $inscription->save();
-        }
+            $family_member = new FamilyMember($inscription->family_member_id);
+            $payments[] = $family_member->lastname." ".$family_member->name;
 
+        }
+        $payments['total'] = $payment->amount." $";
         $join_family_member_lesson_controller = new JoinFamilyMemberLessonController();
         $filters['filter']['pool'] = $inscription->lesson->pool;
         $filters['filter']['session'] = $inscription->lesson->session;
+        echo add_notification(PAYMENT_RECIEVED,$payments);
         $join_family_member_lesson_controller->obtain_cahier($filters);
 
 

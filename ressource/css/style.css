@@ -87,12 +87,40 @@
 	font-variant: normal;
 	text-decoration: underline;
 }
+
+
+
+.notification-title{
+	font-family: Tahoma;
+
+	font-size: 14;
+	font-weight: bold;
+	color: red;
+}
+
+.notification-text{
+	font-family: Tahoma;
+	font-size: 12;
+	float:left;
+	color: red;
+}
+
+.notification-subtitle{
+	font-family: Tahoma;
+	white-space:nowrap;
+	font-size: 12;
+	font-weight: bold;
+	color: red;
+}
+
+
+
 .TitreSection
 {
 	font-family: Arial Black;
 	font-size: 14;
 	font-variant: normal;
-	color : 5DBCFE;
+	color : #5DBCFE;
 }
 .MenuTitre
 {
@@ -118,3 +146,4 @@
 	border-top-width: 1;
 	border-style: solid;
 }
+

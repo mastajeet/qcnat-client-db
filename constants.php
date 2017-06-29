@@ -104,3 +104,4 @@ const PAYMENT_AMOUNT = "montant";
 const PAYMENT_SOURCE = "source";
 const PAYER = "Payeur";
 const VALIDATED = "Valide";
+const PAYMENT_RECIEVED = "Paiement recu";
