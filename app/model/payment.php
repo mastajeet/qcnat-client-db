@@ -23,6 +23,8 @@ class Payment extends BaseModel
             'amount' => 'float',
             'payer' => 'string',
             'source' => 'string',
+            'nb_balloon' => 'int',
+            'nb_cap' => 'int',
             'validated'=>'bool',
         );
     }

@@ -105,3 +105,5 @@ const PAYMENT_SOURCE = "source";
 const PAYER = "Payeur";
 const VALIDATED = "Valide";
 const PAYMENT_RECIEVED = "Paiement recu";
+const PAYMENT_BALLOON = "ballons";
+const PAYMENT_CAP = "bonnets de bain";

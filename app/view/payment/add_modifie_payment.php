@@ -24,6 +24,8 @@ $output->inputhidden_env('ressource','payment');
 $output->inputhidden('payment_id',$inscription->payment_id);
 $output->inputtext('payer',PAYER,10,$payment->payer);
 $output->inputtext('amount',PAYMENT_AMOUNT,10,$payment->amount);
+$output->inputtext('nb_balloon',PAYMENT_BALLOON,2,$payment->nb_balloon,0);
+$output->inputtext('nb_cap',PAYMENT_CAP,2,$payment->nb_cap,0);
 $output->inputselect('source',PaymentSource::get_constants(),$payment->source,PAYMENT_SOURCE);
 $output->flag('validated',$payment->validated,VALIDATED);
 

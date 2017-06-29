@@ -1,0 +1,1 @@
+ALTER TABLE `payment` ADD `nb_balloon` INT NOT NULL DEFAULT '0' AFTER `source`, ADD `nb_cap` INT NOT NULL DEFAULT '0' AFTER `nb_balloon`;
